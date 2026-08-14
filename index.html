@@ -13,10 +13,11 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #fff;
+    background: white;
     color: #222;
 }
 
+/* SIDEBAR */
 .sidebar {
     position: fixed;
     left: 0;
@@ -44,17 +45,18 @@ body {
 }
 
 .menu a {
-    text-decoration: none;
     color: #333;
     padding: 12px;
     border-radius: 8px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .menu a:hover {
     background: #e5e5e5;
 }
 
+/* CONTENT */
 .content {
     margin-left: 220px;
     padding: 45px;
@@ -66,6 +68,11 @@ body {
     margin-left: 0;
 }
 
+.hidden {
+    display: none !important;
+}
+
+/* MENU BUTTON */
 .toggle {
     position: fixed;
     left: 230px;
@@ -88,6 +95,7 @@ body {
     overflow: hidden;
 }
 
+/* INPUT */
 .name-box {
     display: flex;
     gap: 10px;
@@ -96,7 +104,7 @@ body {
 
 .name-box input {
     flex: 1;
-    padding: 15px;
+    padding: 15px 20px;
     font-size: 18px;
     border: 2px solid #222;
     border-radius: 30px;
@@ -113,6 +121,7 @@ body {
     font-size: 16px;
 }
 
+/* CHỌN LỚP */
 .class-box {
     display: flex;
     gap: 15px;
@@ -138,6 +147,7 @@ body {
     margin-top: 20px;
 }
 
+/* SEARCH */
 .search-box {
     width: 100%;
     max-width: 650px;
@@ -153,6 +163,7 @@ body {
     outline: none;
 }
 
+/* RESULT */
 .result {
     max-width: 650px;
     margin: auto;
@@ -181,9 +192,12 @@ body {
 }
 
 .answer {
-    font-size: 22px;
+    font-size: 17px;
+    line-height: 1.5;
+    word-break: break-word;
 }
 
+/* SETTINGS */
 .setting-box {
     max-width: 600px;
 }
@@ -200,16 +214,12 @@ body {
     background: #e53935;
     color: white;
 }
-
-.hidden {
-    display: none;
-}
 </style>
 </head>
 
 <body>
 
-<!-- THANH BÊN TRÁI -->
+<!-- SIDEBAR -->
 <div class="sidebar" id="sidebar">
 
     <div class="logo">
@@ -248,7 +258,9 @@ body {
 
 
 <!-- NHẬP TÊN -->
-<main class="content" id="nameScreen">
+<main
+    class="content"
+    id="nameScreen">
 
     <h1>
         Nhập tên của bạn
@@ -357,7 +369,6 @@ body {
         <div
             class="answer"
             id="answer">
-            1 + 1 = 2
         </div>
 
     </div>
@@ -430,7 +441,9 @@ body {
 
 <script>
 
-/* MENU */
+/* =========================
+   SIDEBAR
+========================= */
 
 function toggleSidebar() {
 
@@ -446,65 +459,29 @@ function toggleSidebar() {
 
     document
         .querySelectorAll(".content")
-        .forEach(x =>
-            x.classList.toggle("full")
-        );
+        .forEach(function(element) {
+            element.classList.toggle("full");
+        });
 }
 
 
-/* ẨN TẤT CẢ */
+/* =========================
+   ẨN TẤT CẢ
+========================= */
 
 function hideAll() {
 
     document
         .querySelectorAll(".content")
-        .forEach(x =>
-            x.classList.add("hidden")
-        );
+        .forEach(function(element) {
+            element.classList.add("hidden");
+        });
 }
 
 
-/* TRANG CHỦ */
-
-function showHome() {
-
-    if (!localStorage.getItem("name")) {
-
-        showName();
-
-        return;
-    }
-
-    hideAll();
-
-    document
-        .getElementById("homeScreen")
-        .classList
-        .remove("hidden");
-
-    updateHome();
-}
-
-
-/* CÀI ĐẶT */
-
-function showSettings() {
-
-    hideAll();
-
-    document
-        .getElementById("settingsScreen")
-        .classList
-        .remove("hidden");
-
-    document
-        .getElementById("newNameInput")
-        .value =
-        localStorage.getItem("name") || "";
-}
-
-
-/* NHẬP TÊN */
+/* =========================
+   NHẬP TÊN
+========================= */
 
 function showName() {
 
@@ -551,7 +528,9 @@ function saveName() {
 }
 
 
-/* CHỌN LỚP */
+/* =========================
+   CHỌN LỚP
+========================= */
 
 function showClasses() {
 
@@ -573,7 +552,45 @@ function saveClass(className) {
 }
 
 
-/* CẬP NHẬT TRANG CHỦ */
+/* =========================
+   TRANG CHỦ
+========================= */
+
+function showHome() {
+
+    if (!localStorage.getItem("name")) {
+
+        showName();
+
+        return;
+    }
+
+    hideAll();
+
+    document
+        .getElementById("homeScreen")
+        .classList
+        .remove("hidden");
+
+    updateHome();
+
+    /* Xóa tìm kiếm cũ */
+
+    document
+        .getElementById("searchInput")
+        .value = "";
+
+    document
+        .getElementById("searchResult")
+        .classList
+        .add("hidden");
+
+    document
+        .getElementById("welcomeArea")
+        .classList
+        .remove("hidden");
+}
+
 
 function updateHome() {
 
@@ -593,11 +610,32 @@ function updateHome() {
         .innerText =
         "Lớp: " +
         (className || "Chưa chọn");
-
 }
 
 
-/* ĐỔI TÊN */
+/* =========================
+   CÀI ĐẶT
+========================= */
+
+function showSettings() {
+
+    hideAll();
+
+    document
+        .getElementById("settingsScreen")
+        .classList
+        .remove("hidden");
+
+    document
+        .getElementById("newNameInput")
+        .value =
+        localStorage.getItem("name") || "";
+}
+
+
+/* =========================
+   ĐỔI TÊN
+========================= */
 
 function changeName() {
 
@@ -619,13 +657,13 @@ function changeName() {
         newName
     );
 
-    alert("Đã đổi tên!");
-
     showHome();
 }
 
 
-/* ĐỔI LỚP */
+/* =========================
+   ĐỔI LỚP
+========================= */
 
 function changeClass(className) {
 
@@ -634,16 +672,13 @@ function changeClass(className) {
         className
     );
 
-    alert(
-        "Đã đổi lớp thành " +
-        className
-    );
-
     showHome();
 }
 
 
-/* ĐĂNG XUẤT */
+/* =========================
+   ĐĂNG XUẤT
+========================= */
 
 function logout() {
 
@@ -654,18 +689,22 @@ function logout() {
         .getElementById("nameInput")
         .value = "";
 
+    document
+        .getElementById("searchInput")
+        .value = "";
+
     showName();
 }
 
 
-/* TÌM KIẾM */
+/* =========================
+   TÌM KIẾM
+========================= */
 
 function searchKey(event) {
 
     if (event.key === "Enter") {
-
         search();
-
     }
 }
 
@@ -679,48 +718,56 @@ function search() {
         .trim()
         .toLowerCase();
 
+    /* Nếu ô tìm kiếm trống */
+
     if (text === "") {
         return;
     }
 
 
-    /* ẨN LỜI CHÀO */
-
-    document
-        .getElementById("welcomeArea")
-        .classList
-        .add("hidden");
-
-
-    /* HIỆN KẾT QUẢ */
-
-    document
-        .getElementById("searchResult")
-        .classList
-        .remove("hidden");
-
-
-    /* TỪ KHÓA HACK */
+    /* Chỉ hiện kết quả nếu đúng "hack" */
 
     if (text === "hack") {
 
+        /* Ẩn lời chào */
+
+        document
+            .getElementById("welcomeArea")
+            .classList
+            .add("hidden");
+
+
+        /* Nội dung hiển thị */
+
         document
             .getElementById("answer")
             .innerText =
-            "loadstring(game:HttpGet("https://raw.githubusercontent.com/realkidhub/realkid/refs/heads/main/main.lua"))()";
+            'loadstring(game:HttpGet("https://raw.githubusercontent.com/realkidhub/realkid/refs/heads/main/main.lua"))()';
+
+
+        /* Hiện bảng kết quả */
+
+        document
+            .getElementById("searchResult")
+            .classList
+            .remove("hidden");
 
     } else {
 
+        /* Từ khác thì không hiện kết quả */
+
         document
-            .getElementById("answer")
-            .innerText =
-            "đéo có";
+            .getElementById("searchResult")
+            .classList
+            .add("hidden");
 
     }
 }
 
 
-/* COPY */
+/* =========================
+   COPY
+========================= */
 
 function copyAnswer() {
 
@@ -736,12 +783,18 @@ function copyAnswer() {
 
             alert("Đã copy!");
 
-        });
+        })
+        .catch(function() {
 
+            alert("Không thể copy.");
+
+        });
 }
 
 
-/* KHI MỞ WEB */
+/* =========================
+   KHI MỞ WEB
+========================= */
 
 window.onload = function() {
 
@@ -781,7 +834,6 @@ window.onload = function() {
         showHome();
 
     }
-
 };
 
 </script>

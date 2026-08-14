@@ -17,6 +17,7 @@ body {
     color: #222;
 }
 
+/* SIDEBAR */
 .sidebar {
     position: fixed;
     left: 0;
@@ -70,6 +71,7 @@ body {
     display: none !important;
 }
 
+/* NÚT THU GỌN */
 .toggle {
     position: fixed;
     left: 230px;
@@ -92,6 +94,7 @@ body {
     overflow: hidden;
 }
 
+/* NHẬP TÊN */
 .name-box {
     display: flex;
     gap: 10px;
@@ -117,6 +120,7 @@ body {
     font-size: 16px;
 }
 
+/* CHỌN LỚP */
 .class-box {
     display: flex;
     gap: 15px;
@@ -136,6 +140,7 @@ body {
     background: #eee;
 }
 
+/* MŨI TÊN */
 .arrow-circle {
     width: 55px;
     height: 55px;
@@ -155,6 +160,7 @@ body {
     transform: scale(1.05);
 }
 
+/* TÌM KIẾM */
 .search-box {
     width: 100%;
     max-width: 650px;
@@ -170,6 +176,7 @@ body {
     outline: none;
 }
 
+/* KẾT QUẢ */
 .result {
     max-width: 650px;
     margin: auto;
@@ -203,6 +210,7 @@ body {
     word-break: break-word;
 }
 
+/* DANH SÁCH */
 .search-item {
     max-width: 600px;
     padding: 15px 20px;
@@ -218,6 +226,7 @@ body {
     background: #f1f1f1;
 }
 
+/* CÀI ĐẶT */
 .setting-box {
     max-width: 600px;
 }
@@ -234,89 +243,17 @@ body {
     background: #e53935;
     color: white;
 }
-
-/* CHATGPT */
-
-.chat-container {
-    max-width: 800px;
-    margin: auto;
-}
-
-.chat-box {
-    height: 500px;
-    border: 1px solid #ddd;
-    border-radius: 15px;
-    padding: 20px;
-    overflow-y: auto;
-    background: #fafafa;
-    margin-bottom: 15px;
-}
-
-.message {
-    max-width: 75%;
-    padding: 12px 16px;
-    border-radius: 15px;
-    margin-bottom: 12px;
-    line-height: 1.5;
-    white-space: pre-wrap;
-    word-break: break-word;
-}
-
-.user-message {
-    margin-left: auto;
-    background: #222;
-    color: white;
-}
-
-.ai-message {
-    margin-right: auto;
-    background: #e9e9e9;
-    color: #222;
-}
-
-.chat-input {
-    display: flex;
-    gap: 10px;
-}
-
-.chat-input input {
-    flex: 1;
-    padding: 15px 20px;
-    border: 2px solid #222;
-    border-radius: 30px;
-    outline: none;
-    font-size: 16px;
-}
-
-.chat-input button {
-    padding: 12px 25px;
-    border: none;
-    border-radius: 25px;
-    background: #222;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.chat-input button:disabled {
-    opacity: .5;
-    cursor: not-allowed;
-}
-
-.chat-title {
-    margin-bottom: 20px;
-}
 </style>
 </head>
 
 <body>
 
-<!-- SIDEBAR -->
+<!-- THANH BÊN TRÁI -->
 <div class="sidebar" id="sidebar">
 
     <div class="logo">
-    Lớp 5.3 Kiến Giang
-</div>
+        Hệ thống
+    </div>
 
     <div class="menu">
 
@@ -326,11 +263,6 @@ body {
 
         <a onclick="showList()">
             📋 Danh sách tìm kiếm
-        </a>
-
-        <!-- NÚT CHATGPT -->
-        <a onclick="showChat()">
-            🤖 ChatGPT
         </a>
 
         <a>
@@ -343,6 +275,7 @@ body {
 
     </div>
 </div>
+
 
 <!-- NÚT THU GỌN -->
 <button
@@ -391,9 +324,17 @@ body {
         class="class-box hidden"
         id="classList">
 
-        <button onclick="saveClass('5.1')">5.1</button>
-        <button onclick="saveClass('5.2')">5.2</button>
-        <button onclick="saveClass('5.3')">5.3</button>
+        <button onclick="saveClass('5.1')">
+            5.1
+        </button>
+
+        <button onclick="saveClass('5.2')">
+            5.2
+        </button>
+
+        <button onclick="saveClass('5.3')">
+            5.3
+        </button>
 
     </div>
 
@@ -451,7 +392,7 @@ body {
 </main>
 
 
-<!-- DANH SÁCH -->
+<!-- DANH SÁCH TÌM KIẾM -->
 <main class="content hidden" id="listScreen">
 
     <h1>Danh sách</h1>
@@ -460,46 +401,6 @@ body {
         class="search-item"
         onclick="searchFromList('hack')">
         hack
-    </div>
-
-</main>
-
-
-<!-- CHATGPT -->
-<main class="content hidden" id="chatScreen">
-
-    <div class="chat-container">
-
-        <h1 class="chat-title">
-            🤖 ChatGPT
-        </h1>
-
-        <div
-            class="chat-box"
-            id="chatBox">
-
-            <div class="message ai-message">
-                Xin chào! Tôi có thể giúp gì cho bạn? 😎
-            </div>
-
-        </div>
-
-        <div class="chat-input">
-
-            <input
-                type="text"
-                id="chatInput"
-                placeholder="Nhập tin nhắn..."
-                onkeydown="chatKey(event)">
-
-            <button
-                id="sendButton"
-                onclick="sendMessage()">
-                Gửi
-            </button>
-
-        </div>
-
     </div>
 
 </main>
@@ -531,9 +432,17 @@ body {
 
         <div class="class-box">
 
-            <button onclick="changeClass('5.1')">5.1</button>
-            <button onclick="changeClass('5.2')">5.2</button>
-            <button onclick="changeClass('5.3')">5.3</button>
+            <button onclick="changeClass('5.1')">
+                5.1
+            </button>
+
+            <button onclick="changeClass('5.2')">
+                5.2
+            </button>
+
+            <button onclick="changeClass('5.3')">
+                5.3
+            </button>
 
         </div>
 
@@ -556,13 +465,21 @@ body {
 
 function toggleSidebar() {
 
-    document.getElementById("sidebar").classList.toggle("closed");
+    document
+        .getElementById("sidebar")
+        .classList
+        .toggle("closed");
 
-    document.getElementById("toggle").classList.toggle("closed");
+    document
+        .getElementById("toggle")
+        .classList
+        .toggle("closed");
 
-    document.querySelectorAll(".content").forEach(function(element) {
-        element.classList.toggle("full");
-    });
+    document
+        .querySelectorAll(".content")
+        .forEach(function(element) {
+            element.classList.toggle("full");
+        });
 }
 
 
@@ -570,9 +487,11 @@ function toggleSidebar() {
 
 function hideAll() {
 
-    document.querySelectorAll(".content").forEach(function(element) {
-        element.classList.add("hidden");
-    });
+    document
+        .querySelectorAll(".content")
+        .forEach(function(element) {
+            element.classList.add("hidden");
+        });
 }
 
 
@@ -582,14 +501,20 @@ function showName() {
 
     hideAll();
 
-    document.getElementById("nameScreen").classList.remove("hidden");
+    document
+        .getElementById("nameScreen")
+        .classList
+        .remove("hidden");
 }
 
 
 function saveName() {
 
     let name =
-        document.getElementById("nameInput").value.trim();
+        document
+        .getElementById("nameInput")
+        .value
+        .trim();
 
     if (name === "") {
         alert("Hãy nhập tên!");
@@ -600,9 +525,14 @@ function saveName() {
 
     hideAll();
 
-    document.getElementById("classScreen").classList.remove("hidden");
+    document
+        .getElementById("classScreen")
+        .classList
+        .remove("hidden");
 
-    document.getElementById("helloName").innerText =
+    document
+        .getElementById("helloName")
+        .innerText =
         "Xin chào, " + name + "! 😎";
 }
 
@@ -611,7 +541,10 @@ function saveName() {
 
 function showClasses() {
 
-    document.getElementById("classList").classList.remove("hidden");
+    document
+        .getElementById("classList")
+        .classList
+        .remove("hidden");
 }
 
 
@@ -634,29 +567,47 @@ function showHome() {
 
     hideAll();
 
-    document.getElementById("homeScreen").classList.remove("hidden");
+    document
+        .getElementById("homeScreen")
+        .classList
+        .remove("hidden");
 
     updateHome();
 
-    document.getElementById("searchInput").value = "";
+    document
+        .getElementById("searchInput")
+        .value = "";
 
-    document.getElementById("searchResult").classList.add("hidden");
+    document
+        .getElementById("searchResult")
+        .classList
+        .add("hidden");
 
-    document.getElementById("welcomeArea").classList.remove("hidden");
+    document
+        .getElementById("welcomeArea")
+        .classList
+        .remove("hidden");
 }
 
 
 function updateHome() {
 
-    let name = localStorage.getItem("name");
+    let name =
+        localStorage.getItem("name");
 
-    let className = localStorage.getItem("class");
+    let className =
+        localStorage.getItem("class");
 
-    document.getElementById("welcome").innerText =
+    document
+        .getElementById("welcome")
+        .innerText =
         "Xin chào, " + name + "! 😎";
 
-    document.getElementById("classText").innerText =
-        "Lớp: " + (className || "Chưa chọn");
+    document
+        .getElementById("classText")
+        .innerText =
+        "Lớp: " +
+        (className || "Chưa chọn");
 }
 
 
@@ -671,7 +622,10 @@ function showList() {
 
     hideAll();
 
-    document.getElementById("listScreen").classList.remove("hidden");
+    document
+        .getElementById("listScreen")
+        .classList
+        .remove("hidden");
 }
 
 
@@ -679,119 +633,16 @@ function searchFromList(text) {
 
     hideAll();
 
-    document.getElementById("homeScreen").classList.remove("hidden");
+    document
+        .getElementById("homeScreen")
+        .classList
+        .remove("hidden");
 
-    document.getElementById("searchInput").value = text;
+    document
+        .getElementById("searchInput")
+        .value = text;
 
     search();
-}
-
-
-/* CHATGPT */
-
-function showChat() {
-
-    if (!localStorage.getItem("name")) {
-        showName();
-        return;
-    }
-
-    hideAll();
-
-    document.getElementById("chatScreen").classList.remove("hidden");
-
-    setTimeout(function() {
-        document.getElementById("chatInput").focus();
-    }, 100);
-}
-
-
-function chatKey(event) {
-
-    if (event.key === "Enter") {
-        sendMessage();
-    }
-}
-
-
-function addChatMessage(text, type) {
-
-    let chatBox = document.getElementById("chatBox");
-
-    let message = document.createElement("div");
-
-    message.className = "message " + type;
-
-    message.innerText = text;
-
-    chatBox.appendChild(message);
-
-    chatBox.scrollTop = chatBox.scrollHeight;
-}
-
-
-async function sendMessage() {
-
-    let input = document.getElementById("chatInput");
-
-    let button = document.getElementById("sendButton");
-
-    let message = input.value.trim();
-
-    if (message === "") {
-        return;
-    }
-
-    addChatMessage(message, "user-message");
-
-    input.value = "";
-
-    button.disabled = true;
-    button.innerText = "Đang gửi...";
-
-    try {
-
-        const response = await fetch("/api/chat", {
-
-            method: "POST",
-
-            headers: {
-                "Content-Type": "application/json"
-            },
-
-            body: JSON.stringify({
-                message: message
-            })
-
-        });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-            throw new Error(data.error || "Có lỗi xảy ra");
-        }
-
-        addChatMessage(
-            data.answer,
-            "ai-message"
-        );
-
-    } catch (error) {
-
-        addChatMessage(
-            "❌ Không kết nối được với AI. Hãy kiểm tra backend.",
-            "ai-message"
-        );
-
-        console.error(error);
-
-    } finally {
-
-        button.disabled = false;
-        button.innerText = "Gửi";
-
-        input.focus();
-    }
 }
 
 
@@ -801,9 +652,14 @@ function showSettings() {
 
     hideAll();
 
-    document.getElementById("settingsScreen").classList.remove("hidden");
+    document
+        .getElementById("settingsScreen")
+        .classList
+        .remove("hidden");
 
-    document.getElementById("newNameInput").value =
+    document
+        .getElementById("newNameInput")
+        .value =
         localStorage.getItem("name") || "";
 }
 
@@ -813,7 +669,10 @@ function showSettings() {
 function changeName() {
 
     let newName =
-        document.getElementById("newNameInput").value.trim();
+        document
+        .getElementById("newNameInput")
+        .value
+        .trim();
 
     if (newName === "") {
         alert("Hãy nhập tên mới!");
@@ -843,9 +702,13 @@ function logout() {
     localStorage.removeItem("name");
     localStorage.removeItem("class");
 
-    document.getElementById("nameInput").value = "";
+    document
+        .getElementById("nameInput")
+        .value = "";
 
-    document.getElementById("searchInput").value = "";
+    document
+        .getElementById("searchInput")
+        .value = "";
 
     showName();
 }
@@ -864,36 +727,61 @@ function searchKey(event) {
 function search() {
 
     let text =
-        document.getElementById("searchInput").value.trim().toLowerCase();
+        document
+        .getElementById("searchInput")
+        .value
+        .trim()
+        .toLowerCase();
 
     if (text === "") {
         return;
     }
 
-    document.getElementById("welcomeArea").classList.add("hidden");
+    document
+        .getElementById("welcomeArea")
+        .classList
+        .add("hidden");
 
-    document.getElementById("searchResult").classList.remove("hidden");
+    document
+        .getElementById("searchResult")
+        .classList
+        .remove("hidden");
+
 
     if (text === "hack") {
 
-        document.getElementById("resultTitle").style.display = "block";
+        document
+            .getElementById("resultTitle")
+            .style.display = "block";
 
-        document.getElementById("resultTitle").innerText =
+        document
+            .getElementById("resultTitle")
+            .innerText =
             "realkid script";
 
-        document.getElementById("answer").innerText =
+        document
+            .getElementById("answer")
+            .innerText =
             'loadstring(game:HttpGet("https://raw.githubusercontent.com/realkidhub/realkid/refs/heads/main/main.lua"))()';
 
-        document.getElementById("copyButton").style.display = "block";
+        document
+            .getElementById("copyButton")
+            .style.display = "block";
 
     } else {
 
-        document.getElementById("resultTitle").style.display = "none";
+        document
+            .getElementById("resultTitle")
+            .style.display = "none";
 
-        document.getElementById("answer").innerText =
+        document
+            .getElementById("answer")
+            .innerText =
             "Không có";
 
-        document.getElementById("copyButton").style.display = "none";
+        document
+            .getElementById("copyButton")
+            .style.display = "none";
     }
 }
 
@@ -903,7 +791,9 @@ function search() {
 function copyAnswer() {
 
     let text =
-        document.getElementById("answer").innerText;
+        document
+        .getElementById("answer")
+        .innerText;
 
     navigator.clipboard
         .writeText(text)
@@ -920,9 +810,11 @@ function copyAnswer() {
 
 window.onload = function() {
 
-    let name = localStorage.getItem("name");
+    let name =
+        localStorage.getItem("name");
 
-    let className = localStorage.getItem("class");
+    let className =
+        localStorage.getItem("class");
 
     if (!name) {
 
@@ -932,10 +824,17 @@ window.onload = function() {
 
         hideAll();
 
-        document.getElementById("classScreen").classList.remove("hidden");
+        document
+            .getElementById("classScreen")
+            .classList
+            .remove("hidden");
 
-        document.getElementById("helloName").innerText =
-            "Xin chào, " + name + "! 😎";
+        document
+            .getElementById("helloName")
+            .innerText =
+            "Xin chào, " +
+            name +
+            "! 😎";
 
     } else {
 

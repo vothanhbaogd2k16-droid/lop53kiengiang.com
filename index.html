@@ -140,10 +140,24 @@ body {
     background: #eee;
 }
 
-.arrow {
-    font-size: 35px;
+/* MŨI TÊN TRONG VÒNG TRÒN */
+.arrow-circle {
+    width: 55px;
+    height: 55px;
+    border: 2px solid #222;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
     cursor: pointer;
     margin-top: 20px;
+    transition: 0.2s;
+}
+
+.arrow-circle:hover {
+    background: #f0f0f0;
+    transform: scale(1.05);
 }
 
 /* TÌM KIẾM */
@@ -300,10 +314,11 @@ body {
 
     <h2>Bro ở lớp mấy?</h2>
 
+    <!-- MŨI TÊN TRONG VÒNG TRÒN -->
     <div
-        class="arrow"
+        class="arrow-circle"
         onclick="showClasses()">
-        ⌄
+        ↓
     </div>
 
     <div
@@ -340,7 +355,6 @@ body {
 
     </div>
 
-    <!-- LỜI CHÀO -->
     <div id="welcomeArea">
 
         <h1 id="welcome"></h1>
@@ -353,7 +367,6 @@ body {
 
     </div>
 
-    <!-- KẾT QUẢ -->
     <div
         id="searchResult"
         class="result hidden">
@@ -736,8 +749,6 @@ function search() {
         .remove("hidden");
 
 
-    /* TÌM THẤY HACK */
-
     if (text === "hack") {
 
         document
@@ -758,11 +769,7 @@ function search() {
             .getElementById("copyButton")
             .style.display = "block";
 
-    }
-
-    /* KHÔNG CÓ */
-
-    else {
+    } else {
 
         document
             .getElementById("resultTitle")
@@ -814,9 +821,7 @@ window.onload = function() {
 
         showName();
 
-    }
-
-    else if (!className) {
+    } else if (!className) {
 
         hideAll();
 
@@ -832,12 +837,9 @@ window.onload = function() {
             name +
             "! 😎";
 
-    }
-
-    else {
+    } else {
 
         showHome();
-
     }
 };
 

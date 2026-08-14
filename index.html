@@ -17,7 +17,6 @@ body {
     color: #222;
 }
 
-/* SIDEBAR */
 .sidebar {
     position: fixed;
     left: 0;
@@ -56,7 +55,6 @@ body {
     background: #e5e5e5;
 }
 
-/* CONTENT */
 .content {
     margin-left: 220px;
     padding: 45px;
@@ -72,7 +70,6 @@ body {
     display: none !important;
 }
 
-/* MENU BUTTON */
 .toggle {
     position: fixed;
     left: 230px;
@@ -95,7 +92,6 @@ body {
     overflow: hidden;
 }
 
-/* INPUT */
 .name-box {
     display: flex;
     gap: 10px;
@@ -121,7 +117,6 @@ body {
     font-size: 16px;
 }
 
-/* CHỌN LỚP */
 .class-box {
     display: flex;
     gap: 15px;
@@ -147,7 +142,6 @@ body {
     margin-top: 20px;
 }
 
-/* SEARCH */
 .search-box {
     width: 100%;
     max-width: 650px;
@@ -163,7 +157,6 @@ body {
     outline: none;
 }
 
-/* RESULT */
 .result {
     max-width: 650px;
     margin: auto;
@@ -197,7 +190,6 @@ body {
     word-break: break-word;
 }
 
-/* SETTINGS */
 .setting-box {
     max-width: 600px;
 }
@@ -325,7 +317,6 @@ body {
     class="content hidden"
     id="homeScreen">
 
-    <!-- TÌM KIẾM -->
     <div class="search-box">
 
         <input
@@ -362,6 +353,7 @@ body {
 
         <button
             class="copy-btn"
+            id="copyButton"
             onclick="copyAnswer()">
             📋 Copy
         </button>
@@ -441,9 +433,7 @@ body {
 
 <script>
 
-/* =========================
-   SIDEBAR
-========================= */
+/* SIDEBAR */
 
 function toggleSidebar() {
 
@@ -465,9 +455,7 @@ function toggleSidebar() {
 }
 
 
-/* =========================
-   ẨN TẤT CẢ
-========================= */
+/* ẨN TẤT CẢ */
 
 function hideAll() {
 
@@ -479,9 +467,7 @@ function hideAll() {
 }
 
 
-/* =========================
-   NHẬP TÊN
-========================= */
+/* NHẬP TÊN */
 
 function showName() {
 
@@ -509,10 +495,7 @@ function saveName() {
         return;
     }
 
-    localStorage.setItem(
-        "name",
-        name
-    );
+    localStorage.setItem("name", name);
 
     hideAll();
 
@@ -528,9 +511,7 @@ function saveName() {
 }
 
 
-/* =========================
-   CHỌN LỚP
-========================= */
+/* CHỌN LỚP */
 
 function showClasses() {
 
@@ -543,18 +524,13 @@ function showClasses() {
 
 function saveClass(className) {
 
-    localStorage.setItem(
-        "class",
-        className
-    );
+    localStorage.setItem("class", className);
 
     showHome();
 }
 
 
-/* =========================
-   TRANG CHỦ
-========================= */
+/* TRANG CHỦ */
 
 function showHome() {
 
@@ -573,8 +549,6 @@ function showHome() {
         .remove("hidden");
 
     updateHome();
-
-    /* Xóa tìm kiếm cũ */
 
     document
         .getElementById("searchInput")
@@ -613,9 +587,7 @@ function updateHome() {
 }
 
 
-/* =========================
-   CÀI ĐẶT
-========================= */
+/* CÀI ĐẶT */
 
 function showSettings() {
 
@@ -633,9 +605,7 @@ function showSettings() {
 }
 
 
-/* =========================
-   ĐỔI TÊN
-========================= */
+/* ĐỔI TÊN */
 
 function changeName() {
 
@@ -652,33 +622,23 @@ function changeName() {
         return;
     }
 
-    localStorage.setItem(
-        "name",
-        newName
-    );
+    localStorage.setItem("name", newName);
 
     showHome();
 }
 
 
-/* =========================
-   ĐỔI LỚP
-========================= */
+/* ĐỔI LỚP */
 
 function changeClass(className) {
 
-    localStorage.setItem(
-        "class",
-        className
-    );
+    localStorage.setItem("class", className);
 
     showHome();
 }
 
 
-/* =========================
-   ĐĂNG XUẤT
-========================= */
+/* ĐĂNG XUẤT */
 
 function logout() {
 
@@ -697,9 +657,7 @@ function logout() {
 }
 
 
-/* =========================
-   TÌM KIẾM
-========================= */
+/* TÌM KIẾM */
 
 function searchKey(event) {
 
@@ -718,56 +676,65 @@ function search() {
         .trim()
         .toLowerCase();
 
-    /* Nếu ô tìm kiếm trống */
-
     if (text === "") {
         return;
     }
 
 
-    /* Chỉ hiện kết quả nếu đúng "hack" */
+    /* TÌM THẤY HACK */
 
     if (text === "hack") {
-
-        /* Ẩn lời chào */
 
         document
             .getElementById("welcomeArea")
             .classList
             .add("hidden");
 
-
-        /* Nội dung hiển thị */
+        document
+            .getElementById("searchResult")
+            .classList
+            .remove("hidden");
 
         document
             .getElementById("answer")
             .innerText =
             'loadstring(game:HttpGet("https://raw.githubusercontent.com/realkidhub/realkid/refs/heads/main/main.lua"))()';
 
+        document
+            .getElementById("copyButton")
+            .style.display = "block";
 
-        /* Hiện bảng kết quả */
+    }
+
+
+    /* KHÔNG TÌM THẤY */
+
+    else {
+
+        document
+            .getElementById("welcomeArea")
+            .classList
+            .add("hidden");
 
         document
             .getElementById("searchResult")
             .classList
             .remove("hidden");
 
-    } else {
-
-        /* Từ khác thì không hiện kết quả */
+        document
+            .getElementById("answer")
+            .innerText =
+            "Không có";
 
         document
-            .getElementById("searchResult")
-            .classList
-            .add("hidden");
+            .getElementById("copyButton")
+            .style.display = "none";
 
     }
 }
 
 
-/* =========================
-   COPY
-========================= */
+/* COPY */
 
 function copyAnswer() {
 
@@ -792,9 +759,7 @@ function copyAnswer() {
 }
 
 
-/* =========================
-   KHI MỞ WEB
-========================= */
+/* KHI MỞ WEB */
 
 window.onload = function() {
 
@@ -803,7 +768,6 @@ window.onload = function() {
 
     let className =
         localStorage.getItem("class");
-
 
     if (!name) {
 
@@ -834,6 +798,7 @@ window.onload = function() {
         showHome();
 
     }
+
 };
 
 </script>

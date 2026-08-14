@@ -1,514 +1,499 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Hệ thống</title>
+    <title>Hệ thống</title>
 
-<style>
-* {
-    box-sizing: border-box;
-}
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: white;
-    color: #222;
-}
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #ffffff;
+            color: #222;
+        }
 
-/* ================= SIDEBAR ================= */
+        /* THANH BÊN TRÁI */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 260px;
+            height: 100vh;
+            background: #f7f7f8;
+            border-right: 1px solid #ddd;
+            padding: 15px;
+            transition: 0.3s;
+        }
 
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 260px;
-    height: 100vh;
-    background: #f7f7f8;
-    border-right: 1px solid #ddd;
-    padding: 15px;
-    transition: 0.3s;
-    z-index: 20;
-}
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            padding: 10px;
+        }
 
-.logo {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 25px;
-    padding: 10px;
-}
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
 
-.menu {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
+        .menu a {
+            text-decoration: none;
+            color: #333;
+            padding: 11px 12px;
+            border-radius: 8px;
+            display: block;
+            cursor: pointer;
+        }
 
-.menu a {
-    text-decoration: none;
-    color: #333;
-    padding: 12px;
-    border-radius: 8px;
-    display: block;
-    cursor: pointer;
-}
+        .menu a:hover {
+            background: #e5e5e5;
+        }
 
-.menu a:hover {
-    background: #e5e5e5;
-}
+        /* NỘI DUNG */
+        .content {
+            margin-left: 260px;
+            padding: 35px;
+            min-height: 100vh;
+            transition: 0.3s;
+        }
 
-/* ================= NỘI DUNG ================= */
+        /* NÚT THU GỌN */
+        .toggle {
+            position: fixed;
+            left: 270px;
+            top: 10px;
+            border: none;
+            background: #eee;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 18px;
+        }
 
-.content {
-    margin-left: 260px;
-    padding: 35px;
-    transition: 0.3s;
-    min-height: 100vh;
-}
+        .toggle:hover {
+            background: #ddd;
+        }
 
-/* ================= NÚT THU GỌN ================= */
+        .sidebar.closed {
+            width: 0;
+            padding: 0;
+            overflow: hidden;
+        }
 
-.toggle {
-    position: fixed;
-    left: 270px;
-    top: 10px;
-    border: none;
-    background: #eee;
-    padding: 8px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    z-index: 30;
-    font-size: 18px;
-}
+        .content.full {
+            margin-left: 0;
+        }
 
-.toggle:hover {
-    background: #ddd;
-}
+        .toggle.closed {
+            left: 15px;
+        }
 
-/* ================= SIDEBAR ĐÓNG ================= */
+        /* MÀN HÌNH NHẬP TÊN */
+        .center-screen {
+            min-height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
 
-.sidebar.closed {
-    width: 0;
-    padding: 0;
-    overflow: hidden;
-}
+        /* Ô NHẬP */
+        .name-box {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
 
-.content.full {
-    margin-left: 0;
-}
+        .name-box input {
+            width: 350px;
+            height: 55px;
+            border: 3px solid #222;
+            border-radius: 30px;
+            padding: 0 22px;
+            font-size: 17px;
+            outline: none;
+        }
 
-.toggle.closed {
-    left: 15px;
-}
+        .name-box input:focus {
+            border-color: #555;
+        }
 
-/* ================= MÀN HÌNH NHẬP TÊN ================= */
+        .name-box button {
+            height: 55px;
+            padding: 0 28px;
+            border: none;
+            border-radius: 30px;
+            background: #222;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+        }
 
-.center-screen {
-    min-height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
+        .name-box button:hover {
+            background: #444;
+        }
 
-.center-screen h1 {
-    font-size: 38px;
-}
+        /* CHỌN LỚP */
+        .class-options {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
 
-/* ================= Ô NHẬP ================= */
+        .class-options button {
+            width: 120px;
+            height: 55px;
+            border: 2px solid #222;
+            background: white;
+            border-radius: 15px;
+            font-size: 18px;
+            cursor: pointer;
+        }
 
-.name-box {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-}
+        .class-options button:hover {
+            background: #222;
+            color: white;
+        }
 
-.name-box input {
-    width: 350px;
-    height: 55px;
-    border: 3px solid #222;
-    border-radius: 30px;
-    padding: 0 22px;
-    font-size: 17px;
-    outline: none;
-}
+        /* TRANG CHỦ */
+        #homeScreen {
+            display: none;
+        }
 
-.name-box input:focus {
-    border-color: #555;
-}
+        .welcome {
+            font-size: 38px;
+        }
 
-.name-box button {
-    height: 55px;
-    padding: 0 28px;
-    border: none;
-    border-radius: 30px;
-    background: #222;
-    color: white;
-    font-size: 17px;
-    cursor: pointer;
-}
+        /* Ô TÌM KIẾM */
+        .search-box {
+            width: 440px;
+            margin: 0 auto 30px auto;
+        }
 
-.name-box button:hover {
-    background: #444;
-}
+        .search-box input {
+            width: 100%;
+            height: 60px;
+            border: 3px solid #222;
+            border-radius: 35px;
+            padding: 0 25px;
+            font-size: 18px;
+            outline: none;
+        }
 
-/* ================= CHỌN LỚP ================= */
+        .search-box input:focus {
+            border-color: #555;
+        }
 
-.class-options {
-    display: flex;
-    gap: 15px;
-    margin-top: 25px;
-}
+        .search-box input::placeholder {
+            color: #777;
+        }
 
-.class-options button {
-    width: 120px;
-    height: 55px;
-    border: 2px solid #222;
-    background: white;
-    border-radius: 15px;
-    font-size: 18px;
-    cursor: pointer;
-}
+        /* KẾT QUẢ TÌM KIẾM */
+        #searchResult {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
 
-.class-options button:hover {
-    background: #222;
-    color: white;
-}
+        /* CÀI ĐẶT */
+        #settingsScreen {
+            display: none;
+        }
 
-/* ================= TRANG CHỦ ================= */
+        .setting-box {
+            max-width: 500px;
+        }
 
-#homeScreen {
-    display: none;
-}
+        .setting-item {
+            margin-top: 25px;
+        }
 
-.welcome {
-    font-size: 38px;
-}
+        /* ĐĂNG XUẤT */
+        .logout {
+            margin-top: 35px;
+            padding: 13px 25px;
+            border: none;
+            border-radius: 10px;
+            background: #e53935;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
 
-/* ================= Ô TÌM KIẾM ================= */
-
-.search-box {
-    width: 440px;
-    margin: 0 auto 40px auto;
-}
-
-.search-box input {
-    width: 100%;
-    height: 60px;
-    border: 3px solid #222;
-    border-radius: 35px;
-    padding: 0 25px;
-    font-size: 18px;
-    outline: none;
-}
-
-.search-box input:focus {
-    border-color: #555;
-}
-
-.search-box input::placeholder {
-    color: #777;
-}
-
-/* ================= CÀI ĐẶT ================= */
-
-#settingsScreen {
-    display: none;
-}
-
-.setting-box {
-    max-width: 500px;
-}
-
-.setting-item {
-    margin-top: 25px;
-}
-
-.setting-item h3 {
-    margin-bottom: 10px;
-}
-
-/* ================= NÚT ĐĂNG XUẤT ================= */
-
-.logout {
-    margin-top: 35px;
-    padding: 13px 25px;
-    border: none;
-    border-radius: 10px;
-    background: #e53935;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.logout:hover {
-    background: #c62828;
-}
-
-/* ================= RESPONSIVE ================= */
-
-@media (max-width: 700px) {
-
-    .sidebar {
-        width: 220px;
-    }
-
-    .content {
-        margin-left: 220px;
-        padding: 25px;
-    }
-
-    .toggle {
-        left: 230px;
-    }
-
-    .search-box {
-        width: 90%;
-    }
-
-    .name-box {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .name-box input {
-        width: 90%;
-    }
-
-    .name-box button {
-        width: 120px;
-    }
-
-    .class-options {
-        flex-direction: column;
-    }
-}
-</style>
+        .logout:hover {
+            background: #c62828;
+        }
+    </style>
 </head>
+
 
 <body>
 
-<!-- ================= THANH BÊN TRÁI ================= -->
+    <!-- THANH BÊN TRÁI -->
 
-<div class="sidebar" id="sidebar">
+    <div class="sidebar" id="sidebar">
 
-    <div class="logo">
-        Hệ thống
+        <div class="logo">
+            Hệ thống
+        </div>
+
+        <div class="menu">
+
+            <a onclick="showHome()">
+                🏠 Trang chủ
+            </a>
+
+            <a onclick="showChat()">
+                💬 Đoạn chat
+            </a>
+
+            <a onclick="showCode()">
+                💻 Code
+            </a>
+
+            <a onclick="showSettings()">
+                ⚙️ Cài đặt
+            </a>
+
+        </div>
+
     </div>
 
-    <div class="menu">
 
-        <a onclick="showHome()">
-            🏠 Trang chủ
-        </a>
+    <!-- NÚT THU GỌN -->
 
-        <a onclick="showChat()">
-            💬 Đoạn chat
-        </a>
-
-        <a onclick="showCode()">
-            💻 Code
-        </a>
-
-        <a onclick="showSettings()">
-            ⚙️ Cài đặt
-        </a>
-
-    </div>
-
-</div>
-
-
-<!-- ================= NÚT MENU ================= -->
-
-<button class="toggle"
+    <button
+        class="toggle"
         id="toggle"
         onclick="toggleSidebar()">
-    ☰
-</button>
+
+        ☰
+
+    </button>
 
 
-<!-- ================= NỘI DUNG ================= -->
+    <!-- NỘI DUNG -->
 
-<main class="content" id="content">
-
-
-    <!-- ================= NHẬP TÊN ================= -->
-
-    <div id="nameScreen" class="center-screen">
-
-        <h1>Nhập tên của bạn</h1>
-
-        <div class="name-box">
-
-            <input
-                type="text"
-                id="nameInput"
-                placeholder="Nhập tên của bạn"
-            >
-
-            <button onclick="saveName()">
-                OK
-            </button>
-
-        </div>
-
-    </div>
+    <main class="content" id="content">
 
 
-    <!-- ================= CHỌN LỚP ================= -->
+        <!-- NHẬP TÊN -->
 
-    <div id="classScreen" class="center-screen"
-         style="display:none;">
+        <div
+            id="nameScreen"
+            class="center-screen">
 
-        <h1>Bro ở lớp mấy?</h1>
+            <h1>
+                Nhập tên của bạn
+            </h1>
 
-        <div class="class-options">
+            <div class="name-box">
 
-            <button onclick="saveClass('5.1')">
-                5.1
-            </button>
+                <input
+                    type="text"
+                    id="nameInput"
+                    placeholder="Nhập tên của bạn">
 
-            <button onclick="saveClass('5.2')">
-                5.2
-            </button>
-
-            <button onclick="saveClass('5.3')">
-                5.3
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- ================= TRANG CHỦ ================= -->
-
-    <div id="homeScreen">
-
-        <!-- Ô TÌM KIẾM -->
-
-        <div class="search-box">
-
-            <input
-                type="text"
-                id="searchInput"
-                placeholder="Tìm kiếm"
-                onkeydown="search(event)"
-            >
-
-        </div>
-
-
-        <h1 class="welcome" id="welcome"></h1>
-
-        <p id="classWelcome"></p>
-
-        <p>
-            Chào mừng bạn đến với hệ thống 😎
-        </p>
-
-    </div>
-
-
-    <!-- ================= ĐOẠN CHAT ================= -->
-
-    <div id="chatScreen" style="display:none;">
-
-        <h1>Đoạn chat</h1>
-
-        <p>
-            Khu vực đoạn chat của bạn.
-        </p>
-
-    </div>
-
-
-    <!-- ================= CODE ================= -->
-
-    <div id="codeScreen" style="display:none;">
-
-        <h1>Code</h1>
-
-        <p>
-            Khu vực Code.
-        </p>
-
-    </div>
-
-
-    <!-- ================= CÀI ĐẶT ================= -->
-
-    <div id="settingsScreen">
-
-        <h1>Cài đặt</h1>
-
-        <div class="setting-box">
-
-            <div class="setting-item">
-
-                <h3>Đổi tên</h3>
-
-                <div class="name-box">
-
-                    <input
-                        type="text"
-                        id="newNameInput"
-                        placeholder="Tên mới"
-                    >
-
-                    <button onclick="changeName()">
-                        OK
-                    </button>
-
-                </div>
+                <button onclick="saveName()">
+                    OK
+                </button>
 
             </div>
 
+        </div>
 
-            <div class="setting-item">
 
-                <h3>Đổi lớp</h3>
+        <!-- CHỌN LỚP -->
 
-                <div class="class-options">
+        <div
+            id="classScreen"
+            class="center-screen"
+            style="display:none;">
 
-                    <button onclick="changeClass('5.1')">
-                        5.1
-                    </button>
+            <h1>
+                Bro ở lớp mấy?
+            </h1>
 
-                    <button onclick="changeClass('5.2')">
-                        5.2
-                    </button>
+            <div class="class-options">
 
-                    <button onclick="changeClass('5.3')">
-                        5.3
-                    </button>
+                <button onclick="saveClass('5.1')">
+                    5.1
+                </button>
 
-                </div>
+                <button onclick="saveClass('5.2')">
+                    5.2
+                </button>
+
+                <button onclick="saveClass('5.3')">
+                    5.3
+                </button>
 
             </div>
 
+        </div>
 
-            <button
-                class="logout"
-                onclick="logout()">
-                🚪 Đăng xuất
-            </button>
+
+        <!-- TRANG CHỦ -->
+
+        <div id="homeScreen">
+
+            <!-- TÌM KIẾM -->
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Tìm kiếm"
+                    onkeydown="search(event)">
+
+            </div>
+
+            <!-- KẾT QUẢ -->
+
+            <p id="searchResult"></p>
+
+
+            <h1
+                class="welcome"
+                id="welcome">
+            </h1>
+
+            <p id="classWelcome"></p>
+
+            <p>
+                Chào mừng bạn đến với hệ thống 😎
+            </p>
 
         </div>
 
-    </div>
 
-</main>
+        <!-- ĐOẠN CHAT -->
+
+        <div
+            id="chatScreen"
+            style="display:none;">
+
+            <h1>
+                Đoạn chat
+            </h1>
+
+            <p>
+                Khu vực đoạn chat.
+            </p>
+
+        </div>
+
+
+        <!-- CODE -->
+
+        <div
+            id="codeScreen"
+            style="display:none;">
+
+            <h1>
+                Code
+            </h1>
+
+            <p>
+                Khu vực Code.
+            </p>
+
+        </div>
+
+
+        <!-- CÀI ĐẶT -->
+
+        <div id="settingsScreen">
+
+            <h1>
+                Cài đặt
+            </h1>
+
+            <div class="setting-box">
+
+
+                <!-- ĐỔI TÊN -->
+
+                <div class="setting-item">
+
+                    <h3>
+                        Đổi tên
+                    </h3>
+
+                    <div class="name-box">
+
+                        <input
+                            type="text"
+                            id="newNameInput"
+                            placeholder="Tên mới">
+
+                        <button onclick="changeName()">
+                            OK
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ĐỔI LỚP -->
+
+                <div class="setting-item">
+
+                    <h3>
+                        Đổi lớp
+                    </h3>
+
+                    <div class="class-options">
+
+                        <button onclick="changeClass('5.1')">
+                            5.1
+                        </button>
+
+                        <button onclick="changeClass('5.2')">
+                            5.2
+                        </button>
+
+                        <button onclick="changeClass('5.3')">
+                            5.3
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ĐĂNG XUẤT -->
+
+                <button
+                    class="logout"
+                    onclick="logout()">
+
+                    🚪 Đăng xuất
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </main>
 
 
 <script>
 
-/* ==========================================
-   SIDEBAR
-========================================== */
+/* THU GỌN THANH BÊN */
 
 function toggleSidebar() {
 
@@ -529,9 +514,7 @@ function toggleSidebar() {
 }
 
 
-/* ==========================================
-   ẨN TẤT CẢ MÀN HÌNH
-========================================== */
+/* ẨN TẤT CẢ */
 
 function hideAll() {
 
@@ -549,9 +532,7 @@ function hideAll() {
 }
 
 
-/* ==========================================
-   LƯU TÊN
-========================================== */
+/* LƯU TÊN */
 
 function saveName() {
 
@@ -568,29 +549,33 @@ function saveName() {
         return;
     }
 
-    localStorage.setItem("username", name);
+    localStorage.setItem(
+        "username",
+        name
+    );
 
     hideAll();
 
-    document.getElementById("classScreen").style.display = "flex";
+    document.getElementById(
+        "classScreen"
+    ).style.display = "flex";
 }
 
 
-/* ==========================================
-   LƯU LỚP
-========================================== */
+/* LƯU LỚP */
 
 function saveClass(className) {
 
-    localStorage.setItem("userClass", className);
+    localStorage.setItem(
+        "userClass",
+        className
+    );
 
     showHome();
 }
 
 
-/* ==========================================
-   HIỂN THỊ TRANG CHỦ
-========================================== */
+/* TRANG CHỦ */
 
 function showHome() {
 
@@ -602,75 +587,91 @@ function showHome() {
     let className =
         localStorage.getItem("userClass");
 
+
     if (!name) {
 
-        document.getElementById("nameScreen").style.display = "flex";
+        document.getElementById(
+            "nameScreen"
+        ).style.display = "flex";
 
         return;
     }
+
 
     if (!className) {
 
-        document.getElementById("classScreen").style.display = "flex";
+        document.getElementById(
+            "classScreen"
+        ).style.display = "flex";
 
         return;
     }
 
-    document.getElementById("homeScreen").style.display = "block";
 
-    document.getElementById("welcome").innerText =
+    document.getElementById(
+        "homeScreen"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "welcome"
+    ).innerText =
         "Xin chào, " + name + "! 😎";
 
-    document.getElementById("classWelcome").innerText =
+
+    document.getElementById(
+        "classWelcome"
+    ).innerText =
         "Lớp: " + className;
 }
 
 
-/* ==========================================
-   ĐOẠN CHAT
-========================================== */
+/* ĐOẠN CHAT */
 
 function showChat() {
 
     hideAll();
 
-    document.getElementById("chatScreen").style.display = "block";
+    document.getElementById(
+        "chatScreen"
+    ).style.display = "block";
 }
 
 
-/* ==========================================
-   CODE
-========================================== */
+/* CODE */
 
 function showCode() {
 
     hideAll();
 
-    document.getElementById("codeScreen").style.display = "block";
+    document.getElementById(
+        "codeScreen"
+    ).style.display = "block";
 }
 
 
-/* ==========================================
-   CÀI ĐẶT
-========================================== */
+/* CÀI ĐẶT */
 
 function showSettings() {
 
     hideAll();
 
-    document.getElementById("settingsScreen").style.display = "block";
+    document.getElementById(
+        "settingsScreen"
+    ).style.display = "block";
+
 
     let name =
         localStorage.getItem("username");
 
-    document.getElementById("newNameInput").value =
-        name || "";
+
+    document.getElementById(
+        "newNameInput"
+    ).value = name || "";
 }
 
 
-/* ==========================================
-   ĐỔI TÊN
-========================================== */
+/* ĐỔI TÊN */
 
 function changeName() {
 
@@ -680,6 +681,7 @@ function changeName() {
         .value
         .trim();
 
+
     if (newName === "") {
 
         alert("Hãy nhập tên mới!");
@@ -687,86 +689,108 @@ function changeName() {
         return;
     }
 
-    localStorage.setItem("username", newName);
 
-    alert("Đã đổi tên!");
+    localStorage.setItem(
+        "username",
+        newName
+    );
 
     showHome();
 }
 
 
-/* ==========================================
-   ĐỔI LỚP
-========================================== */
+/* ĐỔI LỚP */
 
 function changeClass(className) {
 
-    localStorage.setItem("userClass", className);
-
-    alert("Đã đổi lớp thành " + className);
+    localStorage.setItem(
+        "userClass",
+        className
+    );
 
     showHome();
 }
 
 
-/* ==========================================
-   ĐĂNG XUẤT
-========================================== */
+/* ĐĂNG XUẤT */
 
 function logout() {
 
-    let confirmLogout =
-        confirm("Bạn có chắc muốn đăng xuất không?");
+    let ok =
+        confirm(
+            "Bạn có chắc muốn đăng xuất không?"
+        );
 
-    if (!confirmLogout) {
+
+    if (!ok) {
         return;
     }
 
-    /* Xóa tên và lớp */
 
-    localStorage.removeItem("username");
-    localStorage.removeItem("userClass");
+    localStorage.removeItem(
+        "username"
+    );
 
-    /* Xóa ô nhập */
+    localStorage.removeItem(
+        "userClass"
+    );
 
-    document.getElementById("nameInput").value = "";
 
-    document.getElementById("newNameInput").value = "";
+    document.getElementById(
+        "nameInput"
+    ).value = "";
 
-    /* Quay lại nhập tên */
+
+    document.getElementById(
+        "newNameInput"
+    ).value = "";
+
 
     hideAll();
 
-    document.getElementById("nameScreen").style.display = "flex";
+
+    document.getElementById(
+        "nameScreen"
+    ).style.display = "flex";
 }
 
 
-/* ==========================================
+/* ============================
    TÌM KIẾM
-========================================== */
+============================ */
 
 function search(event) {
 
-    if (event.key === "Enter") {
-
-        let keyword =
-            document
-            .getElementById("searchInput")
-            .value
-            .trim();
-
-        if (keyword === "") {
-            return;
-        }
-
-        alert("Bạn đang tìm kiếm: " + keyword);
+    if (event.key !== "Enter") {
+        return;
     }
+
+
+    let keyword =
+        document
+        .getElementById("searchInput")
+        .value
+        .trim();
+
+
+    if (keyword === "") {
+
+        document.getElementById(
+            "searchResult"
+        ).innerText = "";
+
+        return;
+    }
+
+
+    document.getElementById(
+        "searchResult"
+    ).innerText =
+        "Kết quả tìm kiếm cho: " + keyword;
 }
 
 
-/* ==========================================
-   KHI MỞ WEB
-========================================== */
+/* KHI MỞ WEB */
 
 window.onload = function() {
 
@@ -781,7 +805,9 @@ window.onload = function() {
 
         hideAll();
 
-        document.getElementById("nameScreen").style.display = "flex";
+        document.getElementById(
+            "nameScreen"
+        ).style.display = "flex";
 
         return;
     }
@@ -791,7 +817,9 @@ window.onload = function() {
 
         hideAll();
 
-        document.getElementById("classScreen").style.display = "flex";
+        document.getElementById(
+            "classScreen"
+        ).style.display = "flex";
 
         return;
     }

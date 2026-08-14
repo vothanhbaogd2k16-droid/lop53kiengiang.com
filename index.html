@@ -211,7 +211,7 @@ body {
 
 <body>
 
-<!-- SIDEBAR -->
+<!-- THANH BÊN TRÁI -->
 <div class="sidebar" id="sidebar">
 
     <div class="logo">
@@ -240,7 +240,7 @@ body {
 </div>
 
 
-<!-- NÚT MENU -->
+<!-- NÚT THU GỌN -->
 <button
     class="toggle"
     id="toggle"
@@ -250,13 +250,9 @@ body {
 
 
 <!-- NHẬP TÊN -->
-<main
-    class="content"
-    id="nameScreen">
+<main class="content" id="nameScreen">
 
-    <h1>
-        Nhập tên của bạn
-    </h1>
+    <h1>Nhập tên của bạn</h1>
 
     <div class="name-box">
 
@@ -275,15 +271,11 @@ body {
 
 
 <!-- CHỌN LỚP -->
-<main
-    class="content hidden"
-    id="classScreen">
+<main class="content hidden" id="classScreen">
 
     <h1 id="helloName"></h1>
 
-    <h2>
-        Bro ở lớp mấy?
-    </h2>
+    <h2>Bro ở lớp mấy?</h2>
 
     <div
         class="arrow"
@@ -313,9 +305,7 @@ body {
 
 
 <!-- TRANG CHỦ -->
-<main
-    class="content hidden"
-    id="homeScreen">
+<main class="content hidden" id="homeScreen">
 
     <div class="search-box">
 
@@ -347,8 +337,9 @@ body {
         id="searchResult"
         class="result hidden">
 
-        <div class="result-title">
-            realkid script
+        <div
+            id="resultTitle"
+            class="result-title">
         </div>
 
         <button
@@ -373,15 +364,11 @@ body {
     class="content hidden"
     id="settingsScreen">
 
-    <h1>
-        Cài đặt
-    </h1>
+    <h1>Cài đặt</h1>
 
     <div class="setting-box">
 
-        <h3>
-            Đổi tên
-        </h3>
+        <h3>Đổi tên</h3>
 
         <div class="name-box">
 
@@ -397,9 +384,7 @@ body {
         </div>
 
 
-        <h3>
-            Đổi lớp
-        </h3>
+        <h3>Đổi lớp</h3>
 
         <div class="class-box">
 
@@ -416,7 +401,6 @@ body {
             </button>
 
         </div>
-
 
         <br>
 
@@ -680,20 +664,25 @@ function search() {
         return;
     }
 
+    document
+        .getElementById("welcomeArea")
+        .classList
+        .add("hidden");
 
-    /* TÌM THẤY HACK */
+    document
+        .getElementById("searchResult")
+        .classList
+        .remove("hidden");
+
+
+    /* TÌM THẤY */
 
     if (text === "hack") {
 
         document
-            .getElementById("welcomeArea")
-            .classList
-            .add("hidden");
-
-        document
-            .getElementById("searchResult")
-            .classList
-            .remove("hidden");
+            .getElementById("resultTitle")
+            .innerText =
+            "realkid script";
 
         document
             .getElementById("answer")
@@ -712,14 +701,8 @@ function search() {
     else {
 
         document
-            .getElementById("welcomeArea")
-            .classList
-            .add("hidden");
-
-        document
-            .getElementById("searchResult")
-            .classList
-            .remove("hidden");
+            .getElementById("resultTitle")
+            .innerText = "";
 
         document
             .getElementById("answer")
@@ -729,7 +712,6 @@ function search() {
         document
             .getElementById("copyButton")
             .style.display = "none";
-
     }
 }
 
@@ -743,8 +725,7 @@ function copyAnswer() {
         .getElementById("answer")
         .innerText;
 
-    navigator
-        .clipboard
+    navigator.clipboard
         .writeText(text)
         .then(function() {
 
@@ -798,7 +779,6 @@ window.onload = function() {
         showHome();
 
     }
-
 };
 
 </script>

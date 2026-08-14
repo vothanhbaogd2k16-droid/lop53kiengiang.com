@@ -4,9 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Hệ thống</title>
 
     <style>
+
         * {
             box-sizing: border-box;
         }
@@ -18,187 +20,298 @@
             color: #222;
         }
 
-        /* ===== THANH BÊN TRÁI ===== */
+
+        /* =========================
+           THANH BÊN TRÁI
+        ========================= */
 
         .sidebar {
             position: fixed;
             left: 0;
             top: 0;
+
             width: 260px;
             height: 100vh;
+
             background: #f7f7f8;
             border-right: 1px solid #ddd;
+
             padding: 15px;
+
             transition: 0.3s;
+
             z-index: 5;
         }
+
 
         .logo {
             font-size: 22px;
             font-weight: bold;
+
             margin-bottom: 25px;
             padding: 10px;
         }
 
+
         .menu {
             display: flex;
             flex-direction: column;
+
             gap: 5px;
         }
 
+
         .menu a {
             text-decoration: none;
+
             color: #333;
+
             padding: 11px 12px;
+
             border-radius: 8px;
+
             display: block;
+
             cursor: pointer;
         }
+
 
         .menu a:hover {
             background: #e5e5e5;
         }
 
-        /* ===== NỘI DUNG ===== */
+
+        /* =========================
+           NỘI DUNG
+        ========================= */
 
         .content {
             margin-left: 260px;
+
             padding: 50px;
+
             transition: 0.3s;
         }
+
 
         .content.full {
             margin-left: 0;
         }
 
+
         h1 {
             font-size: 40px;
         }
 
-        /* ===== Ô NHẬP ===== */
+
+        /* =========================
+           Ô NHẬP
+        ========================= */
 
         .name-box {
             display: flex;
+
             gap: 10px;
+
             align-items: center;
         }
 
+
         .name-box input {
             width: 350px;
+
             height: 55px;
+
             padding: 0 18px;
+
             font-size: 18px;
+
             border: 3px solid #222;
+
             border-radius: 18px;
+
             outline: none;
         }
+
 
         .name-box input:focus {
             border-color: #555;
         }
 
+
         .name-box button {
             height: 55px;
+
             padding: 0 25px;
+
             border: none;
+
             border-radius: 15px;
+
             background: #222;
+
             color: white;
+
             font-size: 18px;
+
             cursor: pointer;
         }
+
 
         .name-box button:hover {
             background: #444;
         }
 
-        /* ===== CHỌN LỚP ===== */
 
-        #classSelect {
+        /* =========================
+           CHỌN LỚP
+        ========================= */
+
+        #classSelect,
+        #settingsClassSelect {
+
             width: 300px;
+
             height: 55px;
+
             padding: 0 18px;
+
             font-size: 18px;
+
             border: 3px solid #222;
+
             border-radius: 18px;
+
             background: white;
+
             cursor: pointer;
+
             outline: none;
         }
 
-        #classSelect:hover {
+
+        #classSelect:hover,
+        #settingsClassSelect:hover {
             background: #f5f5f5;
         }
 
+
         #classResult {
             font-size: 20px;
+
             font-weight: bold;
         }
 
-        /* ===== NÚT THU GỌN ===== */
+
+        /* =========================
+           NÚT THU GỌN
+        ========================= */
 
         .toggle {
             position: fixed;
+
             left: 270px;
+
             top: 15px;
+
             border: none;
+
             background: #eee;
+
             padding: 8px 12px;
+
             border-radius: 8px;
+
             cursor: pointer;
+
             z-index: 10;
+
             font-size: 18px;
         }
+
 
         .toggle:hover {
             background: #ddd;
         }
 
+
+        /* =========================
+           SIDEBAR ĐÓNG
+        ========================= */
+
         .sidebar.closed {
+
             width: 0;
+
             padding: 0;
+
             overflow: hidden;
         }
+
 
         .toggle.closed {
             left: 15px;
         }
 
-        /* ===== ẨN ===== */
+
+        /* =========================
+           ẨN
+        ========================= */
 
         .hidden {
             display: none;
         }
 
-        /* ===== ĐĂNG XUẤT ===== */
+
+        /* =========================
+           ĐĂNG XUẤT
+        ========================= */
 
         .logout-btn {
+
             margin-top: 25px;
+
             padding: 12px 22px;
+
             border: none;
+
             border-radius: 12px;
+
             background: #222;
+
             color: white;
+
             font-size: 16px;
+
             cursor: pointer;
         }
+
 
         .logout-btn:hover {
             background: #444;
         }
+
     </style>
+
 </head>
 
 
 <body>
 
-    <!-- ===== THANH BÊN TRÁI ===== -->
 
-    <div class="sidebar" id="sidebar">
+    <!-- =========================
+         THANH BÊN TRÁI
+    ========================= -->
+
+    <div
+        class="sidebar"
+        id="sidebar"
+    >
 
         <div class="logo">
             Hệ thống
         </div>
+
 
         <div class="menu">
 
@@ -206,13 +319,16 @@
                 🏠 Trang chủ
             </a>
 
+
             <a onclick="showHome()">
                 💬 Đoạn chat
             </a>
 
+
             <a onclick="showHome()">
                 💻 Code
             </a>
+
 
             <a onclick="showSettings()">
                 ⚙️ Cài đặt
@@ -223,24 +339,36 @@
     </div>
 
 
-    <!-- ===== NÚT THU GỌN ===== -->
+
+    <!-- =========================
+         NÚT THU GỌN
+    ========================= -->
 
     <button
         class="toggle"
         id="toggle"
-        onclick="toggleSidebar()">
+        onclick="toggleSidebar()"
+    >
 
         ☰
 
     </button>
 
 
-    <!-- ===== NỘI DUNG ===== -->
 
-    <main class="content" id="content">
+    <!-- =========================
+         NỘI DUNG
+    ========================= -->
+
+    <main
+        class="content"
+        id="content"
+    >
 
 
-        <!-- ===== NHẬP TÊN ===== -->
+        <!-- =========================
+             NHẬP TÊN
+        ========================= -->
 
         <div id="nameScreen">
 
@@ -248,13 +376,16 @@
                 Nhập tên của bạn
             </h1>
 
+
             <div class="name-box">
 
                 <input
                     type="text"
                     id="nameInput"
                     placeholder="Nhập tên của bạn"
-                    autocomplete="off">
+                    autocomplete="off"
+                >
+
 
                 <button onclick="saveName()">
                     OK
@@ -265,58 +396,92 @@
         </div>
 
 
-        <!-- ===== TRANG CHỦ ===== -->
 
-        <div id="homeScreen" class="hidden">
+        <!-- =========================
+             TRANG CHỦ
+        ========================= -->
 
-            <h1 id="welcome"></h1>
+        <div
+            id="homeScreen"
+            class="hidden"
+        >
+
+            <h1 id="welcome">
+            </h1>
+
 
             <p>
                 Chào mừng bạn đến với hệ thống 😎
             </p>
 
-            <h2>
-                Bro ở lớp mấy?
-            </h2>
 
-            <select
-                id="classSelect"
-                onchange="saveClass()">
+            <!-- CHỈ HIỆN KHI CHƯA CHỌN LỚP -->
 
-                <option value="">
-                    ▼ Chọn lớp
-                </option>
+            <div id="classQuestion">
 
-                <option value="5.1">
-                    5.1
-                </option>
+                <h2>
+                    Bro ở lớp mấy?
+                </h2>
 
-                <option value="5.2">
-                    5.2
-                </option>
 
-                <option value="5.3">
-                    5.3
-                </option>
+                <select
+                    id="classSelect"
+                    onchange="saveClass()"
+                >
 
-            </select>
+                    <option value="">
+                        ▼ Chọn lớp
+                    </option>
 
-            <p id="classResult"></p>
+
+                    <option value="5.1">
+                        5.1
+                    </option>
+
+
+                    <option value="5.2">
+                        5.2
+                    </option>
+
+
+                    <option value="5.3">
+                        5.3
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- HIỆN LỚP SAU KHI CHỌN -->
+
+            <p id="classResult">
+            </p>
 
         </div>
 
 
-        <!-- ===== CÀI ĐẶT ===== -->
 
-        <div id="settingsScreen" class="hidden">
+        <!-- =========================
+             CÀI ĐẶT
+        ========================= -->
+
+        <div
+            id="settingsScreen"
+            class="hidden"
+        >
 
             <h1>
                 Cài đặt
             </h1>
 
+
+            <!-- ĐỔI TÊN -->
+
             <p>
                 Đổi tên của bạn:
             </p>
+
 
             <div class="name-box">
 
@@ -324,7 +489,9 @@
                     type="text"
                     id="newNameInput"
                     placeholder="Tên mới"
-                    autocomplete="off">
+                    autocomplete="off"
+                >
+
 
                 <button onclick="changeName()">
                     OK
@@ -332,16 +499,58 @@
 
             </div>
 
+
             <br>
+
+
+            <!-- ĐỔI LỚP -->
+
+            <p>
+                Đổi lớp của bạn:
+            </p>
+
+
+            <select
+                id="settingsClassSelect"
+                onchange="changeClass()"
+            >
+
+                <option value="">
+                    ▼ Chọn lớp
+                </option>
+
+
+                <option value="5.1">
+                    5.1
+                </option>
+
+
+                <option value="5.2">
+                    5.2
+                </option>
+
+
+                <option value="5.3">
+                    5.3
+                </option>
+
+            </select>
+
 
             <p>
                 Lớp hiện tại:
-                <b id="currentClass">Chưa chọn</b>
+                <b id="currentClass">
+                    Chưa chọn
+                </b>
             </p>
+
+
+            <!-- ĐĂNG XUẤT -->
 
             <button
                 class="logout-btn"
-                onclick="logout()">
+                onclick="logout()"
+            >
 
                 🚪 Đăng xuất
 
@@ -349,14 +558,21 @@
 
         </div>
 
+
     </main>
 
 
-    <!-- ===== JAVASCRIPT ===== -->
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
 
     <script>
 
-        /* ===== THU GỌN SIDEBAR ===== */
+
+        /* =========================
+           THU GỌN SIDEBAR
+        ========================= */
 
         function toggleSidebar() {
 
@@ -364,17 +580,23 @@
                 .getElementById("sidebar")
                 .classList.toggle("closed");
 
+
             document
                 .getElementById("content")
                 .classList.toggle("full");
 
+
             document
                 .getElementById("toggle")
                 .classList.toggle("closed");
+
         }
 
 
-        /* ===== TRANG CHỦ ===== */
+
+        /* =========================
+           TRANG CHỦ
+        ========================= */
 
         function showHome() {
 
@@ -382,9 +604,11 @@
                 .getElementById("nameScreen")
                 .classList.add("hidden");
 
+
             document
                 .getElementById("settingsScreen")
                 .classList.add("hidden");
+
 
             document
                 .getElementById("homeScreen")
@@ -394,9 +618,12 @@
             const name =
                 localStorage.getItem("userName");
 
+
             const className =
                 localStorage.getItem("userClass");
 
+
+            /* Hiện tên */
 
             if (name) {
 
@@ -408,31 +635,48 @@
             }
 
 
+            /* Nếu đã chọn lớp */
+
             if (className) {
 
                 document
-                    .getElementById("classSelect")
-                    .value = className;
+                    .getElementById("classQuestion")
+                    .style.display =
+                    "none";
+
 
                 document
                     .getElementById("classResult")
                     .innerText =
                     "Lớp của bạn: " + className;
 
-            } else {
+            }
+
+
+            /* Nếu chưa chọn lớp */
+
+            else {
 
                 document
-                    .getElementById("classSelect")
-                    .value = "";
+                    .getElementById("classQuestion")
+                    .style.display =
+                    "block";
+
 
                 document
                     .getElementById("classResult")
-                    .innerText = "";
+                    .innerText =
+                    "";
+
             }
+
         }
 
 
-        /* ===== CÀI ĐẶT ===== */
+
+        /* =========================
+           CÀI ĐẶT
+        ========================= */
 
         function showSettings() {
 
@@ -440,9 +684,11 @@
                 .getElementById("nameScreen")
                 .classList.add("hidden");
 
+
             document
                 .getElementById("homeScreen")
                 .classList.add("hidden");
+
 
             document
                 .getElementById("settingsScreen")
@@ -452,23 +698,39 @@
             const name =
                 localStorage.getItem("userName");
 
+
             const className =
                 localStorage.getItem("userClass");
 
 
+            /* Tên */
+
             document
                 .getElementById("newNameInput")
-                .value = name || "";
+                .value =
+                name || "";
 
+
+            /* Lớp */
 
             document
                 .getElementById("currentClass")
                 .innerText =
                 className || "Chưa chọn";
+
+
+            document
+                .getElementById("settingsClassSelect")
+                .value =
+                className || "";
+
         }
 
 
-        /* ===== LƯU TÊN ===== */
+
+        /* =========================
+           LƯU TÊN
+        ========================= */
 
         function saveName() {
 
@@ -494,10 +756,14 @@
 
 
             showHome();
+
         }
 
 
-        /* ===== LƯU LỚP ===== */
+
+        /* =========================
+           LƯU LỚP TRANG CHỦ
+        ========================= */
 
         function saveClass() {
 
@@ -509,15 +775,11 @@
 
             if (className === "") {
 
-                localStorage.removeItem("userClass");
-
-                document
-                    .getElementById("classResult")
-                    .innerText = "";
-
                 return;
             }
 
+
+            /* Lưu lớp */
 
             localStorage.setItem(
                 "userClass",
@@ -525,14 +787,28 @@
             );
 
 
+            /* Hiện kết quả */
+
             document
                 .getElementById("classResult")
                 .innerText =
                 "Lớp của bạn: " + className;
+
+
+            /* Làm biến mất câu hỏi */
+
+            document
+                .getElementById("classQuestion")
+                .style.display =
+                "none";
+
         }
 
 
-        /* ===== ĐỔI TÊN ===== */
+
+        /* =========================
+           ĐỔI TÊN
+        ========================= */
 
         function changeName() {
 
@@ -557,11 +833,59 @@
             );
 
 
+            alert("Đã đổi tên!");
+
+
             showHome();
+
         }
 
 
-        /* ===== ĐĂNG XUẤT ===== */
+
+        /* =========================
+           ĐỔI LỚP TRONG CÀI ĐẶT
+        ========================= */
+
+        function changeClass() {
+
+            const className =
+                document
+                    .getElementById("settingsClassSelect")
+                    .value;
+
+
+            if (className === "") {
+
+                return;
+            }
+
+
+            localStorage.setItem(
+                "userClass",
+                className
+            );
+
+
+            document
+                .getElementById("currentClass")
+                .innerText =
+                className;
+
+
+            alert(
+                "Đã đổi lớp thành " + className
+            );
+
+
+            showHome();
+
+        }
+
+
+
+        /* =========================
+           ĐĂNG XUẤT
+        ========================= */
 
         function logout() {
 
@@ -572,46 +896,75 @@
 
 
             if (!confirmLogout) {
+
                 return;
             }
 
 
-            /*
-             * XÓA HOÀN TOÀN
-             * tên và lớp
-             */
+            /* XÓA TÊN */
 
-            localStorage.removeItem("userName");
-            localStorage.removeItem("userClass");
+            localStorage.removeItem(
+                "userName"
+            );
 
 
-            /*
-             * Xóa tất cả các key cũ
-             * phòng trường hợp bản code trước
-             * đã lưu tên bằng key khác.
-             */
+            /* XÓA LỚP */
 
-            localStorage.removeItem("username");
-            localStorage.removeItem("name");
+            localStorage.removeItem(
+                "userClass"
+            );
 
 
-            /* Reset các ô */
+            /* XÓA KEY CŨ */
+
+            localStorage.removeItem(
+                "username"
+            );
+
+
+            localStorage.removeItem(
+                "name"
+            );
+
+
+            /* Xóa các ô */
 
             document
                 .getElementById("nameInput")
-                .value = "";
+                .value =
+                "";
+
 
             document
                 .getElementById("newNameInput")
-                .value = "";
+                .value =
+                "";
+
 
             document
                 .getElementById("classSelect")
-                .value = "";
+                .value =
+                "";
+
+
+            document
+                .getElementById("settingsClassSelect")
+                .value =
+                "";
+
 
             document
                 .getElementById("classResult")
-                .innerText = "";
+                .innerText =
+                "";
+
+
+            /* Reset lớp */
+
+            document
+                .getElementById("currentClass")
+                .innerText =
+                "Chưa chọn";
 
 
             /* Ẩn trang chủ */
@@ -628,22 +981,34 @@
                 .classList.add("hidden");
 
 
-            /* Hiện lại nhập tên */
+            /* Hiện nhập tên */
 
             document
                 .getElementById("nameScreen")
                 .classList.remove("hidden");
 
 
-            /* Đưa con trỏ vào ô nhập */
+            /* Hiện lại câu hỏi lớp */
+
+            document
+                .getElementById("classQuestion")
+                .style.display =
+                "block";
+
+
+            /* Đưa chuột vào ô tên */
 
             document
                 .getElementById("nameInput")
                 .focus();
+
         }
 
 
-        /* ===== KHI MỞ WEBSITE ===== */
+
+        /* =========================
+           KHI MỞ WEBSITE
+        ========================= */
 
         window.onload = function() {
 
@@ -655,19 +1020,25 @@
 
                 showHome();
 
-            } else {
+            }
+
+
+            else {
 
                 document
                     .getElementById("nameScreen")
                     .classList.remove("hidden");
 
+
                 document
                     .getElementById("homeScreen")
                     .classList.add("hidden");
 
+
                 document
                     .getElementById("settingsScreen")
                     .classList.add("hidden");
+
             }
 
         };

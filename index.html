@@ -17,25 +17,25 @@ body {
     color: #222;
 }
 
-/* SIDEBAR */
+/* THANH BÊN TRÁI */
 .sidebar {
     position: fixed;
     left: 0;
     top: 0;
-    width: 260px;
+    width: 220px;
     height: 100vh;
     background: #f7f7f8;
     border-right: 1px solid #ddd;
     padding: 15px;
-    transition: 0.3s;
-    z-index: 20;
+    transition: .3s;
+    z-index: 10;
 }
 
 .logo {
     font-size: 22px;
     font-weight: bold;
-    margin-bottom: 25px;
     padding: 10px;
+    margin-bottom: 25px;
 }
 
 .menu {
@@ -47,9 +47,8 @@ body {
 .menu a {
     text-decoration: none;
     color: #333;
-    padding: 11px 12px;
+    padding: 12px;
     border-radius: 8px;
-    display: block;
     cursor: pointer;
 }
 
@@ -57,194 +56,161 @@ body {
     background: #e5e5e5;
 }
 
-/* CONTENT */
+/* NỘI DUNG */
 .content {
-    margin-left: 260px;
-    padding: 35px;
-    min-height: 100vh;
-    transition: 0.3s;
+    margin-left: 220px;
+    padding: 45px;
+    transition: .3s;
 }
 
 .content.full {
     margin-left: 0;
 }
 
-/* TOGGLE */
+/* NÚT MENU */
 .toggle {
     position: fixed;
-    left: 270px;
+    left: 230px;
     top: 10px;
     border: none;
     background: #eee;
     padding: 8px 12px;
     border-radius: 8px;
     cursor: pointer;
-    z-index: 30;
-    font-size: 18px;
+    z-index: 20;
 }
 
+.toggle.closed {
+    left: 10px;
+}
+
+/* SIDEBAR ĐÓNG */
 .sidebar.closed {
     width: 0;
     padding: 0;
     overflow: hidden;
 }
 
-.toggle.closed {
-    left: 15px;
-}
-
-/* NHẬP TÊN */
-.center-screen {
-    min-height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.center-screen h1 {
-    font-size: 38px;
-}
-
-/* INPUT */
+/* Ô NHẬP TÊN */
 .name-box {
     display: flex;
     gap: 10px;
-    margin-top: 20px;
+    max-width: 600px;
 }
 
 .name-box input {
-    width: 350px;
-    height: 55px;
-    border: 3px solid #222;
+    flex: 1;
+    padding: 15px;
+    font-size: 18px;
+    border: 2px solid #222;
     border-radius: 30px;
-    padding: 0 22px;
-    font-size: 17px;
     outline: none;
 }
 
 .name-box button {
-    height: 55px;
-    padding: 0 28px;
+    padding: 12px 25px;
     border: none;
-    border-radius: 30px;
+    border-radius: 25px;
     background: #222;
     color: white;
-    font-size: 17px;
     cursor: pointer;
+    font-size: 16px;
 }
 
 /* CHỌN LỚP */
-.class-options {
+.class-box {
     display: flex;
     gap: 15px;
     margin-top: 25px;
 }
 
-.class-options button {
-    width: 120px;
-    height: 55px;
-    border: 2px solid #222;
+.class-box button {
+    padding: 15px 25px;
+    border: 1px solid #ccc;
     background: white;
     border-radius: 15px;
-    font-size: 18px;
     cursor: pointer;
+    font-size: 18px;
 }
 
-.class-options button:hover {
-    background: #222;
-    color: white;
+.class-box button:hover {
+    background: #eee;
 }
 
-/* TRANG CHỦ */
-#homeScreen {
-    display: none;
-}
-
-.welcome {
-    font-size: 38px;
+/* MŨI TÊN */
+.arrow {
+    font-size: 35px;
+    cursor: pointer;
+    margin-top: 20px;
 }
 
 /* TÌM KIẾM */
 .search-box {
-    width: 540px;
-    margin: 0 auto 30px auto;
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto 40px auto;
 }
 
 .search-box input {
     width: 100%;
-    height: 60px;
+    padding: 17px 25px;
     border: 3px solid #222;
-    border-radius: 35px;
-    padding: 0 25px;
+    border-radius: 40px;
     font-size: 18px;
     outline: none;
 }
 
-.search-box input:focus {
-    border-color: #555;
-}
-
 /* KẾT QUẢ */
 .result {
-    width: 540px;
-    margin: 20px auto;
+    max-width: 650px;
+    margin: auto;
     border: 1px solid #ddd;
-    border-radius: 14px;
-    padding: 15px;
-    background: #f8f8f8;
+    border-radius: 15px;
+    padding: 20px;
+    position: relative;
 }
 
-.result-copy {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 10px;
+.result-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
-.result-copy button {
-    padding: 8px 15px;
-    border: none;
-    border-radius: 8px;
+.copy-btn {
+    position: absolute;
+    right: 15px;
+    top: 15px;
     background: #222;
     color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
     cursor: pointer;
 }
 
-.result pre {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    font-size: 21px;
-    white-space: pre-wrap;
+.answer {
+    font-size: 22px;
 }
 
 /* CÀI ĐẶT */
-#settingsScreen {
-    display: none;
-}
-
 .setting-box {
-    max-width: 500px;
+    max-width: 600px;
 }
 
-.setting-item {
-    margin-top: 25px;
-}
-
-/* ĐĂNG XUẤT */
-.logout {
-    margin-top: 35px;
-    padding: 13px 25px;
+.setting-box button {
+    padding: 12px 20px;
     border: none;
     border-radius: 10px;
-    background: #e53935;
-    color: white;
-    font-size: 16px;
+    margin-top: 10px;
     cursor: pointer;
 }
 
-/* CHAT / CODE */
-#chatScreen,
-#codeScreen {
+.logout {
+    background: #e53935;
+    color: white;
+}
+
+.hidden {
     display: none;
 }
 </style>
@@ -260,284 +226,221 @@ body {
     </div>
 
     <div class="menu">
-
-        <a onclick="showHome()">
-            🏠 Trang chủ
-        </a>
-
-        <a onclick="showChat()">
-            💬 Đoạn chat
-        </a>
-
-        <a onclick="showCode()">
-            💻 Code
-        </a>
-
-        <a onclick="showSettings()">
-            ⚙️ Cài đặt
-        </a>
-
+        <a onclick="showHome()">🏠 Trang chủ</a>
+        <a>💬 Đoạn chat</a>
+        <a>💻 Code</a>
+        <a onclick="showSettings()">⚙️ Cài đặt</a>
     </div>
+
 </div>
 
-
-<!-- NÚT THU GỌN -->
-<button
-    class="toggle"
-    id="toggle"
-    onclick="toggleSidebar()">
-    ☰
-</button>
+<!-- NÚT MENU -->
+<button class="toggle" id="toggle" onclick="toggleSidebar()">☰</button>
 
 
-<!-- NỘI DUNG -->
-<main class="content" id="content">
+<!-- MÀN HÌNH NHẬP TÊN -->
+<main class="content" id="nameScreen">
 
-
-<!-- NHẬP TÊN -->
-<div id="nameScreen" class="center-screen">
-
-    <h1>
-        Nhập tên của bạn
-    </h1>
+    <h1>Nhập tên của bạn</h1>
 
     <div class="name-box">
-
         <input
             type="text"
             id="nameInput"
-            placeholder="Nhập tên của bạn">
+            placeholder="Nhập tên của bạn"
+        >
 
-        <button onclick="saveName()">
-            OK
-        </button>
+        <button onclick="saveName()">OK</button>
+    </div>
+
+</main>
+
+
+<!-- MÀN HÌNH CHỌN LỚP -->
+<main class="content hidden" id="classScreen">
+
+    <h1 id="helloName"></h1>
+
+    <h2>Bro ở lớp mấy?</h2>
+
+    <div class="arrow" onclick="showClasses()">⌄</div>
+
+    <div class="class-box hidden" id="classList">
+
+        <button onclick="saveClass('5.1')">5.1</button>
+        <button onclick="saveClass('5.2')">5.2</button>
+        <button onclick="saveClass('5.3')">5.3</button>
 
     </div>
 
-</div>
-
-
-<!-- CHỌN LỚP -->
-<div
-    id="classScreen"
-    class="center-screen"
-    style="display:none;">
-
-    <h1>
-        Bro ở lớp mấy?
-    </h1>
-
-    <div class="class-options">
-
-        <button onclick="saveClass('5.1')">
-            5.1
-        </button>
-
-        <button onclick="saveClass('5.2')">
-            5.2
-        </button>
-
-        <button onclick="saveClass('5.3')">
-            5.3
-        </button>
-
-    </div>
-
-</div>
+</main>
 
 
 <!-- TRANG CHỦ -->
-<div id="homeScreen">
+<main class="content hidden" id="homeScreen">
 
-    <!-- TÌM KIẾM -->
+    <!-- Ô TÌM KIẾM -->
     <div class="search-box">
-
         <input
             type="text"
             id="searchInput"
-            placeholder="Tìm kiếm..."
-            onkeydown="search(event)">
-
+            placeholder="Tìm kiếm"
+            onkeydown="searchKey(event)"
+        >
     </div>
-
-
-    <!-- KẾT QUẢ -->
-    <div
-        id="searchResult"
-        class="result"
-        style="display:none;">
-
-        <div class="result-copy">
-
-            <button onclick="copyResult()">
-                📋 Copy
-            </button>
-
-        </div>
-
-        <pre id="resultText"></pre>
-
-    </div>
-
 
     <!-- LỜI CHÀO -->
     <div id="welcomeArea">
 
-        <h1
-            class="welcome"
-            id="welcome">
-        </h1>
+        <h1 id="welcome"></h1>
 
-        <p id="classWelcome"></p>
+        <p id="classText"></p>
 
-        <p>
-            Chào mừng bạn đến với hệ thống 😎
-        </p>
+        <p>Chào mừng bạn đến với hệ thống 😎</p>
 
     </div>
 
-</div>
+    <!-- KẾT QUẢ -->
+    <div id="searchResult" class="result hidden">
 
+        <div class="result-title">
+            Bài tập
+        </div>
 
-<!-- ĐOẠN CHAT -->
-<div id="chatScreen">
+        <button class="copy-btn" onclick="copyAnswer()">
+            📋 Copy
+        </button>
 
-    <h1>
-        Đoạn chat
-    </h1>
+        <div class="answer" id="answer">
+            1 + 1 = 2
+        </div>
 
-    <p>
-        Khu vực đoạn chat.
-    </p>
+    </div>
 
-</div>
-
-
-<!-- CODE -->
-<div id="codeScreen">
-
-    <h1>
-        Code
-    </h1>
-
-    <p>
-        Khu vực Code.
-    </p>
-
-</div>
+</main>
 
 
 <!-- CÀI ĐẶT -->
-<div id="settingsScreen">
+<main class="content hidden" id="settingsScreen">
 
-    <h1>
-        Cài đặt
-    </h1>
+    <h1>Cài đặt</h1>
 
     <div class="setting-box">
 
-        <div class="setting-item">
+        <h3>Đổi tên</h3>
 
-            <h3>
-                Đổi tên
-            </h3>
+        <div class="name-box">
 
-            <div class="name-box">
+            <input
+                type="text"
+                id="newNameInput"
+                placeholder="Tên mới"
+            >
 
-                <input
-                    type="text"
-                    id="newNameInput"
-                    placeholder="Tên mới">
-
-                <button onclick="changeName()">
-                    OK
-                </button>
-
-            </div>
+            <button onclick="changeName()">OK</button>
 
         </div>
 
+        <br>
 
-        <div class="setting-item">
+        <h3>Đổi lớp</h3>
 
-            <h3>
-                Đổi lớp
-            </h3>
+        <div class="class-box">
 
-            <div class="class-options">
-
-                <button onclick="changeClass('5.1')">
-                    5.1
-                </button>
-
-                <button onclick="changeClass('5.2')">
-                    5.2
-                </button>
-
-                <button onclick="changeClass('5.3')">
-                    5.3
-                </button>
-
-            </div>
+            <button onclick="changeClass('5.1')">5.1</button>
+            <button onclick="changeClass('5.2')">5.2</button>
+            <button onclick="changeClass('5.3')">5.3</button>
 
         </div>
 
+        <br>
 
-        <button
-            class="logout"
-            onclick="logout()">
-            🚪 Đăng xuất
+        <button class="logout" onclick="logout()">
+            Đăng xuất
         </button>
 
     </div>
-
-</div>
 
 </main>
 
 
 <script>
 
-/* SIDEBAR */
+/* =========================
+   MENU
+========================= */
 
 function toggleSidebar() {
 
     document
         .getElementById("sidebar")
-        .classList
-        .toggle("closed");
-
-    document
-        .getElementById("content")
-        .classList
-        .toggle("full");
+        .classList.toggle("closed");
 
     document
         .getElementById("toggle")
-        .classList
-        .toggle("closed");
+        .classList.toggle("closed");
+
+    document
+        .querySelectorAll(".content")
+        .forEach(x => x.classList.toggle("full"));
 }
 
 
-/* ẨN TẤT CẢ */
+/* =========================
+   HIỂN THỊ MÀN HÌNH
+========================= */
 
 function hideAll() {
 
-    document.getElementById("nameScreen").style.display = "none";
-
-    document.getElementById("classScreen").style.display = "none";
-
-    document.getElementById("homeScreen").style.display = "none";
-
-    document.getElementById("chatScreen").style.display = "none";
-
-    document.getElementById("codeScreen").style.display = "none";
-
-    document.getElementById("settingsScreen").style.display = "none";
+    document
+        .querySelectorAll(".content")
+        .forEach(x => x.classList.add("hidden"));
 }
 
 
-/* LƯU TÊN */
+function showHome() {
+
+    if (!localStorage.getItem("name")) {
+        showName();
+        return;
+    }
+
+    hideAll();
+
+    document
+        .getElementById("homeScreen")
+        .classList.remove("hidden");
+
+    updateHome();
+}
+
+
+function showSettings() {
+
+    hideAll();
+
+    document
+        .getElementById("settingsScreen")
+        .classList.remove("hidden");
+
+    document.getElementById("newNameInput").value =
+        localStorage.getItem("name") || "";
+}
+
+
+function showName() {
+
+    hideAll();
+
+    document
+        .getElementById("nameScreen")
+        .classList.remove("hidden");
+}
+
+
+/* =========================
+   NHẬP TÊN
+========================= */
 
 function saveName() {
 
@@ -548,144 +451,64 @@ function saveName() {
         .trim();
 
     if (name === "") {
-
-        alert("Hãy nhập tên trước nhé!");
-
+        alert("Hãy nhập tên!");
         return;
     }
 
-    localStorage.setItem(
-        "username",
-        name
-    );
+    localStorage.setItem("name", name);
 
     hideAll();
 
-    document.getElementById(
-        "classScreen"
-    ).style.display = "flex";
+    document
+        .getElementById("classScreen")
+        .classList.remove("hidden");
+
+    document.getElementById("helloName").innerText =
+        "Xin chào, " + name + "! 😎";
 }
 
 
-/* LƯU LỚP */
+/* =========================
+   CHỌN LỚP
+========================= */
+
+function showClasses() {
+
+    document
+        .getElementById("classList")
+        .classList.remove("hidden");
+}
+
 
 function saveClass(className) {
 
-    localStorage.setItem(
-        "userClass",
-        className
-    );
+    localStorage.setItem("class", className);
 
     showHome();
 }
 
 
-/* TRANG CHỦ */
+/* =========================
+   TRANG CHỦ
+========================= */
 
-function showHome() {
+function updateHome() {
 
-    hideAll();
+    let name = localStorage.getItem("name");
+    let className = localStorage.getItem("class");
 
-    let name =
-        localStorage.getItem("username");
-
-    let className =
-        localStorage.getItem("userClass");
-
-    if (!name) {
-
-        document.getElementById(
-            "nameScreen"
-        ).style.display = "flex";
-
-        return;
-    }
-
-    if (!className) {
-
-        document.getElementById(
-            "classScreen"
-        ).style.display = "flex";
-
-        return;
-    }
-
-    document.getElementById(
-        "homeScreen"
-    ).style.display = "block";
-
-    document.getElementById(
-        "welcome"
-    ).innerText =
+    document.getElementById("welcome").innerText =
         "Xin chào, " + name + "! 😎";
 
-    document.getElementById(
-        "classWelcome"
-    ).innerText =
-        "Lớp: " + className;
+    document.getElementById("classText").innerText =
+        "Lớp: " + (className || "Chưa chọn");
 
-    /* Hiện lại lời chào khi quay về trang chủ */
-
-    document.getElementById(
-        "welcomeArea"
-    ).style.display = "block";
-
-    /* Xóa kết quả tìm kiếm cũ */
-
-    document.getElementById(
-        "searchResult"
-    ).style.display = "none";
-
-    document.getElementById(
-        "searchInput"
-    ).value = "";
 }
 
 
-/* CHAT */
-
-function showChat() {
-
-    hideAll();
-
-    document.getElementById(
-        "chatScreen"
-    ).style.display = "block";
-}
-
-
-/* CODE */
-
-function showCode() {
-
-    hideAll();
-
-    document.getElementById(
-        "codeScreen"
-    ).style.display = "block";
-}
-
-
-/* CÀI ĐẶT */
-
-function showSettings() {
-
-    hideAll();
-
-    document.getElementById(
-        "settingsScreen"
-    ).style.display = "block";
-
-    let name =
-        localStorage.getItem("username");
-
-    document.getElementById(
-        "newNameInput"
-    ).value = name || "";
-}
-
-
-/* ĐỔI TÊN */
+/* =========================
+   ĐỔI TÊN
+========================= */
 
 function changeName() {
 
@@ -696,200 +519,154 @@ function changeName() {
         .trim();
 
     if (newName === "") {
-
         alert("Hãy nhập tên mới!");
-
         return;
     }
 
-    localStorage.setItem(
-        "username",
-        newName
-    );
+    localStorage.setItem("name", newName);
+
+    alert("Đã đổi tên!");
 
     showHome();
 }
 
 
-/* ĐỔI LỚP */
+/* =========================
+   ĐỔI LỚP
+========================= */
 
 function changeClass(className) {
 
-    localStorage.setItem(
-        "userClass",
-        className
-    );
+    localStorage.setItem("class", className);
+
+    alert("Đã đổi lớp thành " + className);
 
     showHome();
 }
 
 
-/* ĐĂNG XUẤT */
+/* =========================
+   ĐĂNG XUẤT
+========================= */
 
 function logout() {
 
-    let ok =
-        confirm(
-            "Bạn có chắc muốn đăng xuất không?"
-        );
+    localStorage.removeItem("name");
+    localStorage.removeItem("class");
 
-    if (!ok) {
-        return;
-    }
+    document.getElementById("nameInput").value = "";
 
-    localStorage.removeItem("username");
-    localStorage.removeItem("userClass");
-
-    document.getElementById(
-        "nameInput"
-    ).value = "";
-
-    document.getElementById(
-        "newNameInput"
-    ).value = "";
-
-    document.getElementById(
-        "searchInput"
-    ).value = "";
-
-    document.getElementById(
-        "searchResult"
-    ).style.display = "none";
-
-    hideAll();
-
-    document.getElementById(
-        "nameScreen"
-    ).style.display = "flex";
+    showName();
 }
 
 
-/* TÌM KIẾM */
+/* =========================
+   TÌM KIẾM
+========================= */
 
-function search(event) {
+function searchKey(event) {
 
-    if (event.key !== "Enter") {
-        return;
+    if (event.key === "Enter") {
+        search();
     }
+}
 
-    let keyword =
+
+function search() {
+
+    let text =
         document
         .getElementById("searchInput")
         .value
         .trim()
         .toLowerCase();
 
-    let result =
-        document.getElementById(
-            "searchResult"
-        );
-
-    let resultText =
-        document.getElementById(
-            "resultText"
-        );
-
-
-    if (keyword === "") {
-
-        result.style.display = "none";
-
-        document.getElementById(
-            "welcomeArea"
-        ).style.display = "block";
-
+    if (text === "") {
         return;
     }
 
+    /*
+       ẨN PHẦN:
+       Xin chào...
+       Lớp...
+       Chào mừng...
+    */
 
-    /* XÓA LỜI CHÀO */
-
-    document.getElementById(
-        "welcomeArea"
-    ).style.display = "none";
+    document
+        .getElementById("welcomeArea")
+        .classList.add("hidden");
 
 
-    /* KẾT QUẢ hack */
+    /* HIỆN KẾT QUẢ */
 
-    if (keyword === "hack") {
+    document
+        .getElementById("searchResult")
+        .classList.remove("hidden");
 
-        resultText.textContent =
+
+    /* Nếu tìm hello */
+
+    if (text === "hello") {
+
+        document.getElementById("answer").innerText =
             "1 + 1 = 2";
 
     } else {
 
-        resultText.textContent =
-            "Không tìm thấy kết quả.";
+        document.getElementById("answer").innerText =
+            "Không tìm thấy bài tập.";
 
     }
-
-
-    result.style.display = "block";
 }
 
 
-/* COPY */
+/* =========================
+   COPY
+========================= */
 
-function copyResult() {
+function copyAnswer() {
 
     let text =
         document
-        .getElementById(
-            "resultText"
-        )
-        .textContent;
+        .getElementById("answer")
+        .innerText;
 
-    navigator.clipboard
-        .writeText(text)
-        .then(function() {
+    navigator.clipboard.writeText(text);
 
-            alert("Đã copy!");
-
-        })
-        .catch(function() {
-
-            alert("Không thể copy.");
-
-        });
+    alert("Đã copy!");
 }
 
 
-/* KHI MỞ WEB */
+/* =========================
+   TỰ ĐỘNG KHÔI PHỤC
+========================= */
 
 window.onload = function() {
 
-    let name =
-        localStorage.getItem("username");
-
-    let className =
-        localStorage.getItem("userClass");
-
+    let name = localStorage.getItem("name");
+    let className = localStorage.getItem("class");
 
     if (!name) {
 
-        hideAll();
+        showName();
 
-        document.getElementById(
-            "nameScreen"
-        ).style.display = "flex";
-
-        return;
-    }
-
-
-    if (!className) {
+    } else if (!className) {
 
         hideAll();
 
-        document.getElementById(
-            "classScreen"
-        ).style.display = "flex";
+        document
+            .getElementById("classScreen")
+            .classList.remove("hidden");
 
-        return;
+        document.getElementById("helloName").innerText =
+            "Xin chào, " + name + "! 😎";
+
+    } else {
+
+        showHome();
+
     }
 
-
-    showHome();
 };
 
 </script>

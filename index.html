@@ -161,6 +161,41 @@
     </div>
 
     <h2 id="greeting"></h2>
+</main><main class="content" id="content">
+
+    <div id="nameScreen">
+        <h1>Nhập tên của bạn</h1>
+
+        <div class="name-box">
+            <input
+                type="text"
+                id="nameInput"
+                placeholder="Nhập tên của bạn"
+            >
+            <button onclick="saveName()">OK</button>
+        </div>
+    </div>
+
+    <div id="homeScreen" style="display:none;">
+        <h1 id="welcome"></h1>
+        <p>Chào mừng bạn đến với hệ thống 😎</p>
+    </div>
+
+    <div id="settingsScreen" style="display:none;">
+        <h1>Hệ thống</h1>
+
+        <p>Đổi tên của bạn:</p>
+
+        <div class="name-box">
+            <input
+                type="text"
+                id="newNameInput"
+                placeholder="Tên mới"
+            >
+            <button onclick="changeName()">OK</button>
+        </div>
+    </div>
+
 </main>
     <script>
         function toggleSidebar() {

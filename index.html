@@ -71,7 +71,7 @@ body {
     display: none !important;
 }
 
-/* NÚT MENU */
+/* NÚT THU GỌN */
 .toggle {
     position: fixed;
     left: 230px;
@@ -196,6 +196,22 @@ body {
     word-break: break-word;
 }
 
+/* DANH SÁCH */
+.search-item {
+    max-width: 600px;
+    padding: 15px 20px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    margin-top: 15px;
+    cursor: pointer;
+    background: white;
+    font-size: 18px;
+}
+
+.search-item:hover {
+    background: #f1f1f1;
+}
+
 /* CÀI ĐẶT */
 .setting-box {
     max-width: 600px;
@@ -231,8 +247,8 @@ body {
             🏠 Trang chủ
         </a>
 
-        <a>
-            💬 Danh sách tìm kiếm
+        <a onclick="showList()">
+            📋 Danh sách tìm kiếm
         </a>
 
         <a>
@@ -257,13 +273,9 @@ body {
 
 
 <!-- NHẬP TÊN -->
-<main
-    class="content"
-    id="nameScreen">
+<main class="content" id="nameScreen">
 
-    <h1>
-        Nhập tên của bạn
-    </h1>
+    <h1>Nhập tên của bạn</h1>
 
     <div class="name-box">
 
@@ -282,15 +294,11 @@ body {
 
 
 <!-- CHỌN LỚP -->
-<main
-    class="content hidden"
-    id="classScreen">
+<main class="content hidden" id="classScreen">
 
     <h1 id="helloName"></h1>
 
-    <h2>
-        Bro ở lớp mấy?
-    </h2>
+    <h2>Bro ở lớp mấy?</h2>
 
     <div
         class="arrow"
@@ -320,9 +328,7 @@ body {
 
 
 <!-- TRANG CHỦ -->
-<main
-    class="content hidden"
-    id="homeScreen">
+<main class="content hidden" id="homeScreen">
 
     <div class="search-box">
 
@@ -333,7 +339,6 @@ body {
             onkeydown="searchKey(event)">
 
     </div>
-
 
     <!-- LỜI CHÀO -->
     <div id="welcomeArea">
@@ -347,7 +352,6 @@ body {
         </p>
 
     </div>
-
 
     <!-- KẾT QUẢ -->
     <div
@@ -376,20 +380,28 @@ body {
 </main>
 
 
-<!-- CÀI ĐẶT -->
-<main
-    class="content hidden"
-    id="settingsScreen">
+<!-- DANH SÁCH TÌM KIẾM -->
+<main class="content hidden" id="listScreen">
 
-    <h1>
-        Cài đặt
-    </h1>
+    <h1>Danh sách</h1>
+
+    <div
+        class="search-item"
+        onclick="searchFromList('hack')">
+        hack
+    </div>
+
+</main>
+
+
+<!-- CÀI ĐẶT -->
+<main class="content hidden" id="settingsScreen">
+
+    <h1>Cài đặt</h1>
 
     <div class="setting-box">
 
-        <h3>
-            Đổi tên
-        </h3>
+        <h3>Đổi tên</h3>
 
         <div class="name-box">
 
@@ -404,10 +416,7 @@ body {
 
         </div>
 
-
-        <h3>
-            Đổi lớp
-        </h3>
+        <h3>Đổi lớp</h3>
 
         <div class="class-box">
 
@@ -496,9 +505,7 @@ function saveName() {
         .trim();
 
     if (name === "") {
-
         alert("Hãy nhập tên!");
-
         return;
     }
 
@@ -542,9 +549,7 @@ function saveClass(className) {
 function showHome() {
 
     if (!localStorage.getItem("name")) {
-
         showName();
-
         return;
     }
 
@@ -594,6 +599,41 @@ function updateHome() {
 }
 
 
+/* DANH SÁCH */
+
+function showList() {
+
+    if (!localStorage.getItem("name")) {
+        showName();
+        return;
+    }
+
+    hideAll();
+
+    document
+        .getElementById("listScreen")
+        .classList
+        .remove("hidden");
+}
+
+
+function searchFromList(text) {
+
+    hideAll();
+
+    document
+        .getElementById("homeScreen")
+        .classList
+        .remove("hidden");
+
+    document
+        .getElementById("searchInput")
+        .value = text;
+
+    search();
+}
+
+
 /* CÀI ĐẶT */
 
 function showSettings() {
@@ -623,9 +663,7 @@ function changeName() {
         .trim();
 
     if (newName === "") {
-
         alert("Hãy nhập tên mới!");
-
         return;
     }
 
@@ -687,7 +725,6 @@ function search() {
         return;
     }
 
-
     document
         .getElementById("welcomeArea")
         .classList
@@ -699,7 +736,7 @@ function search() {
         .remove("hidden");
 
 
-    /* NẾU TÌM ĐƯỢC HACK */
+    /* TÌM THẤY HACK */
 
     if (text === "hack") {
 
@@ -723,8 +760,7 @@ function search() {
 
     }
 
-
-    /* NẾU KHÔNG TÌM ĐƯỢC */
+    /* KHÔNG CÓ */
 
     else {
 
@@ -735,7 +771,7 @@ function search() {
         document
             .getElementById("answer")
             .innerText =
-            "đeck có";
+            "Không có";
 
         document
             .getElementById("copyButton")
@@ -756,14 +792,10 @@ function copyAnswer() {
     navigator.clipboard
         .writeText(text)
         .then(function() {
-
             alert("Đã copy!");
-
         })
         .catch(function() {
-
             alert("Không thể copy.");
-
         });
 }
 

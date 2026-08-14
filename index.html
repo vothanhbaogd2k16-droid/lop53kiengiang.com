@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Hệ thống</title>
 
 <style>
-
 * {
     box-sizing: border-box;
 }
@@ -20,30 +17,23 @@ body {
     color: #222;
 }
 
-/* ================= SIDEBAR ================= */
-
+/* SIDEBAR */
 .sidebar {
     position: fixed;
     left: 0;
     top: 0;
-
     width: 260px;
     height: 100vh;
-
     background: #f7f7f8;
     border-right: 1px solid #ddd;
-
     padding: 15px;
-
     transition: 0.3s;
-
     z-index: 20;
 }
 
 .logo {
     font-size: 22px;
     font-weight: bold;
-
     margin-bottom: 25px;
     padding: 10px;
 }
@@ -57,13 +47,9 @@ body {
 .menu a {
     text-decoration: none;
     color: #333;
-
     padding: 11px 12px;
-
     border-radius: 8px;
-
     display: block;
-
     cursor: pointer;
 }
 
@@ -71,16 +57,11 @@ body {
     background: #e5e5e5;
 }
 
-
-/* ================= CONTENT ================= */
-
+/* CONTENT */
 .content {
     margin-left: 260px;
-
     padding: 35px;
-
     min-height: 100vh;
-
     transition: 0.3s;
 }
 
@@ -88,39 +69,23 @@ body {
     margin-left: 0;
 }
 
-
-/* ================= TOGGLE ================= */
-
+/* TOGGLE */
 .toggle {
     position: fixed;
-
     left: 270px;
     top: 10px;
-
     border: none;
-
     background: #eee;
-
     padding: 8px 12px;
-
     border-radius: 8px;
-
     cursor: pointer;
-
     z-index: 30;
-
     font-size: 18px;
-}
-
-.toggle:hover {
-    background: #ddd;
 }
 
 .sidebar.closed {
     width: 0;
-
     padding: 0;
-
     overflow: hidden;
 }
 
@@ -128,18 +93,12 @@ body {
     left: 15px;
 }
 
-
-/* ================= NHẬP TÊN ================= */
-
+/* NHẬP TÊN */
 .center-screen {
     min-height: 80vh;
-
     display: flex;
-
     justify-content: center;
-
     align-items: center;
-
     flex-direction: column;
 }
 
@@ -147,95 +106,57 @@ body {
     font-size: 38px;
 }
 
-
-/* ================= INPUT ================= */
-
+/* INPUT */
 .name-box {
     display: flex;
-
     gap: 10px;
-
     margin-top: 20px;
 }
 
 .name-box input {
     width: 350px;
-
     height: 55px;
-
     border: 3px solid #222;
-
     border-radius: 30px;
-
     padding: 0 22px;
-
     font-size: 17px;
-
     outline: none;
-}
-
-.name-box input:focus {
-    border-color: #555;
 }
 
 .name-box button {
     height: 55px;
-
     padding: 0 28px;
-
     border: none;
-
     border-radius: 30px;
-
     background: #222;
-
     color: white;
-
     font-size: 17px;
-
     cursor: pointer;
 }
 
-.name-box button:hover {
-    background: #444;
-}
-
-
-/* ================= CHỌN LỚP ================= */
-
+/* CHỌN LỚP */
 .class-options {
     display: flex;
-
     gap: 15px;
-
     margin-top: 25px;
 }
 
 .class-options button {
     width: 120px;
-
     height: 55px;
-
     border: 2px solid #222;
-
     background: white;
-
     border-radius: 15px;
-
     font-size: 18px;
-
     cursor: pointer;
 }
 
 .class-options button:hover {
     background: #222;
-
     color: white;
 }
 
-
-/* ================= TRANG CHỦ ================= */
-
+/* TRANG CHỦ */
 #homeScreen {
     display: none;
 }
@@ -244,32 +165,19 @@ body {
     font-size: 38px;
 }
 
-
-/* ================= TÌM KIẾM ================= */
-
+/* TÌM KIẾM */
 .search-box {
     width: 540px;
-
     margin: 0 auto 30px auto;
-
-    display: flex;
-
-    align-items: center;
 }
 
 .search-box input {
-    flex: 1;
-
+    width: 100%;
     height: 60px;
-
     border: 3px solid #222;
-
     border-radius: 35px;
-
     padding: 0 25px;
-
     font-size: 18px;
-
     outline: none;
 }
 
@@ -277,64 +185,39 @@ body {
     border-color: #555;
 }
 
-
-/* ================= KẾT QUẢ ================= */
-
+/* KẾT QUẢ */
 .result {
     width: 540px;
-
     margin: 20px auto;
-
     border: 1px solid #ddd;
-
     border-radius: 14px;
-
     padding: 15px;
-
     background: #f8f8f8;
 }
 
 .result-copy {
     display: flex;
-
     justify-content: flex-end;
-
     margin-bottom: 10px;
 }
 
 .result-copy button {
     padding: 8px 15px;
-
     border: none;
-
     border-radius: 8px;
-
     background: #222;
-
     color: white;
-
     cursor: pointer;
-
-    font-size: 14px;
-}
-
-.result-copy button:hover {
-    background: #444;
 }
 
 .result pre {
     margin: 0;
-
     font-family: Arial, sans-serif;
-
     font-size: 21px;
-
     white-space: pre-wrap;
 }
 
-
-/* ================= CÀI ĐẶT ================= */
-
+/* CÀI ĐẶT */
 #settingsScreen {
     display: none;
 }
@@ -347,62 +230,34 @@ body {
     margin-top: 25px;
 }
 
-.setting-item h3 {
-    margin-bottom: 10px;
-}
-
-
-/* ================= LOGOUT ================= */
-
+/* ĐĂNG XUẤT */
 .logout {
     margin-top: 35px;
-
     padding: 13px 25px;
-
     border: none;
-
     border-radius: 10px;
-
     background: #e53935;
-
     color: white;
-
     font-size: 16px;
-
     cursor: pointer;
 }
 
-.logout:hover {
-    background: #c62828;
-}
-
-
-/* ================= CHAT / CODE ================= */
-
+/* CHAT / CODE */
 #chatScreen,
 #codeScreen {
     display: none;
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- ================= SIDEBAR ================= -->
-
-<div
-    class="sidebar"
-    id="sidebar"
->
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
 
     <div class="logo">
         Hệ thống
     </div>
-
 
     <div class="menu">
 
@@ -423,48 +278,35 @@ body {
         </a>
 
     </div>
-
 </div>
 
 
-<!-- ================= TOGGLE ================= -->
-
+<!-- NÚT THU GỌN -->
 <button
     class="toggle"
     id="toggle"
-    onclick="toggleSidebar()"
->
+    onclick="toggleSidebar()">
     ☰
 </button>
 
 
-<!-- ================= CONTENT ================= -->
-
-<main
-    class="content"
-    id="content"
->
+<!-- NỘI DUNG -->
+<main class="content" id="content">
 
 
-<!-- ================= NHẬP TÊN ================= -->
-
-<div
-    id="nameScreen"
-    class="center-screen"
->
+<!-- NHẬP TÊN -->
+<div id="nameScreen" class="center-screen">
 
     <h1>
         Nhập tên của bạn
     </h1>
-
 
     <div class="name-box">
 
         <input
             type="text"
             id="nameInput"
-            placeholder="Nhập tên của bạn"
-        >
+            placeholder="Nhập tên của bạn">
 
         <button onclick="saveName()">
             OK
@@ -475,18 +317,15 @@ body {
 </div>
 
 
-<!-- ================= CHỌN LỚP ================= -->
-
+<!-- CHỌN LỚP -->
 <div
     id="classScreen"
     class="center-screen"
-    style="display:none;"
->
+    style="display:none;">
 
     <h1>
         Bro ở lớp mấy?
     </h1>
-
 
     <div class="class-options">
 
@@ -507,32 +346,26 @@ body {
 </div>
 
 
-<!-- ================= TRANG CHỦ ================= -->
-
+<!-- TRANG CHỦ -->
 <div id="homeScreen">
 
-
     <!-- TÌM KIẾM -->
-
     <div class="search-box">
 
         <input
             type="text"
             id="searchInput"
             placeholder="Tìm kiếm..."
-            onkeydown="search(event)"
-        >
+            onkeydown="search(event)">
 
     </div>
 
 
     <!-- KẾT QUẢ -->
-
     <div
         id="searchResult"
         class="result"
-        style="display:none;"
-    >
+        style="display:none;">
 
         <div class="result-copy">
 
@@ -542,31 +375,31 @@ body {
 
         </div>
 
-
         <pre id="resultText"></pre>
 
     </div>
 
 
-    <h1
-        class="welcome"
-        id="welcome"
-    >
-    </h1>
+    <!-- LỜI CHÀO -->
+    <div id="welcomeArea">
 
+        <h1
+            class="welcome"
+            id="welcome">
+        </h1>
 
-    <p id="classWelcome"></p>
+        <p id="classWelcome"></p>
 
+        <p>
+            Chào mừng bạn đến với hệ thống 😎
+        </p>
 
-    <p>
-        Chào mừng bạn đến với hệ thống 😎
-    </p>
+    </div>
 
 </div>
 
 
-<!-- ================= CHAT ================= -->
-
+<!-- ĐOẠN CHAT -->
 <div id="chatScreen">
 
     <h1>
@@ -580,8 +413,7 @@ body {
 </div>
 
 
-<!-- ================= CODE ================= -->
-
+<!-- CODE -->
 <div id="codeScreen">
 
     <h1>
@@ -595,20 +427,14 @@ body {
 </div>
 
 
-<!-- ================= CÀI ĐẶT ================= -->
-
+<!-- CÀI ĐẶT -->
 <div id="settingsScreen">
-
 
     <h1>
         Cài đặt
     </h1>
 
-
     <div class="setting-box">
-
-
-        <!-- ĐỔI TÊN -->
 
         <div class="setting-item">
 
@@ -616,15 +442,12 @@ body {
                 Đổi tên
             </h3>
 
-
             <div class="name-box">
 
                 <input
                     type="text"
                     id="newNameInput"
-                    placeholder="Tên mới"
-                >
-
+                    placeholder="Tên mới">
 
                 <button onclick="changeName()">
                     OK
@@ -635,14 +458,11 @@ body {
         </div>
 
 
-        <!-- ĐỔI LỚP -->
-
         <div class="setting-item">
 
             <h3>
                 Đổi lớp
             </h3>
-
 
             <div class="class-options">
 
@@ -663,28 +483,22 @@ body {
         </div>
 
 
-        <!-- ĐĂNG XUẤT -->
-
         <button
             class="logout"
-            onclick="logout()"
-        >
+            onclick="logout()">
             🚪 Đăng xuất
         </button>
-
 
     </div>
 
 </div>
-
 
 </main>
 
 
 <script>
 
-
-/* ================= SIDEBAR ================= */
+/* SIDEBAR */
 
 function toggleSidebar() {
 
@@ -693,12 +507,10 @@ function toggleSidebar() {
         .classList
         .toggle("closed");
 
-
     document
         .getElementById("content")
         .classList
         .toggle("full");
-
 
     document
         .getElementById("toggle")
@@ -707,7 +519,7 @@ function toggleSidebar() {
 }
 
 
-/* ================= ẨN TẤT CẢ ================= */
+/* ẨN TẤT CẢ */
 
 function hideAll() {
 
@@ -725,7 +537,7 @@ function hideAll() {
 }
 
 
-/* ================= LƯU TÊN ================= */
+/* LƯU TÊN */
 
 function saveName() {
 
@@ -735,7 +547,6 @@ function saveName() {
         .value
         .trim();
 
-
     if (name === "") {
 
         alert("Hãy nhập tên trước nhé!");
@@ -743,15 +554,12 @@ function saveName() {
         return;
     }
 
-
     localStorage.setItem(
         "username",
         name
     );
 
-
     hideAll();
-
 
     document.getElementById(
         "classScreen"
@@ -759,7 +567,7 @@ function saveName() {
 }
 
 
-/* ================= LƯU LỚP ================= */
+/* LƯU LỚP */
 
 function saveClass(className) {
 
@@ -768,25 +576,21 @@ function saveClass(className) {
         className
     );
 
-
     showHome();
 }
 
 
-/* ================= TRANG CHỦ ================= */
+/* TRANG CHỦ */
 
 function showHome() {
 
     hideAll();
 
-
     let name =
         localStorage.getItem("username");
 
-
     let className =
         localStorage.getItem("userClass");
-
 
     if (!name) {
 
@@ -797,7 +601,6 @@ function showHome() {
         return;
     }
 
-
     if (!className) {
 
         document.getElementById(
@@ -807,31 +610,43 @@ function showHome() {
         return;
     }
 
-
     document.getElementById(
         "homeScreen"
     ).style.display = "block";
-
 
     document.getElementById(
         "welcome"
     ).innerText =
         "Xin chào, " + name + "! 😎";
 
-
     document.getElementById(
         "classWelcome"
     ).innerText =
         "Lớp: " + className;
+
+    /* Hiện lại lời chào khi quay về trang chủ */
+
+    document.getElementById(
+        "welcomeArea"
+    ).style.display = "block";
+
+    /* Xóa kết quả tìm kiếm cũ */
+
+    document.getElementById(
+        "searchResult"
+    ).style.display = "none";
+
+    document.getElementById(
+        "searchInput"
+    ).value = "";
 }
 
 
-/* ================= CHAT ================= */
+/* CHAT */
 
 function showChat() {
 
     hideAll();
-
 
     document.getElementById(
         "chatScreen"
@@ -839,12 +654,11 @@ function showChat() {
 }
 
 
-/* ================= CODE ================= */
+/* CODE */
 
 function showCode() {
 
     hideAll();
-
 
     document.getElementById(
         "codeScreen"
@@ -852,30 +666,26 @@ function showCode() {
 }
 
 
-/* ================= CÀI ĐẶT ================= */
+/* CÀI ĐẶT */
 
 function showSettings() {
 
     hideAll();
 
-
     document.getElementById(
         "settingsScreen"
     ).style.display = "block";
 
-
     let name =
         localStorage.getItem("username");
 
-
     document.getElementById(
         "newNameInput"
-    ).value =
-        name || "";
+    ).value = name || "";
 }
 
 
-/* ================= ĐỔI TÊN ================= */
+/* ĐỔI TÊN */
 
 function changeName() {
 
@@ -885,7 +695,6 @@ function changeName() {
         .value
         .trim();
 
-
     if (newName === "") {
 
         alert("Hãy nhập tên mới!");
@@ -893,18 +702,16 @@ function changeName() {
         return;
     }
 
-
     localStorage.setItem(
         "username",
         newName
     );
 
-
     showHome();
 }
 
 
-/* ================= ĐỔI LỚP ================= */
+/* ĐỔI LỚP */
 
 function changeClass(className) {
 
@@ -913,12 +720,11 @@ function changeClass(className) {
         className
     );
 
-
     showHome();
 }
 
 
-/* ================= ĐĂNG XUẤT ================= */
+/* ĐĂNG XUẤT */
 
 function logout() {
 
@@ -927,44 +733,30 @@ function logout() {
             "Bạn có chắc muốn đăng xuất không?"
         );
 
-
     if (!ok) {
         return;
     }
 
-
-    localStorage.removeItem(
-        "username"
-    );
-
-
-    localStorage.removeItem(
-        "userClass"
-    );
-
+    localStorage.removeItem("username");
+    localStorage.removeItem("userClass");
 
     document.getElementById(
         "nameInput"
     ).value = "";
 
-
     document.getElementById(
         "newNameInput"
     ).value = "";
-
 
     document.getElementById(
         "searchInput"
     ).value = "";
 
-
     document.getElementById(
         "searchResult"
     ).style.display = "none";
 
-
     hideAll();
-
 
     document.getElementById(
         "nameScreen"
@@ -972,14 +764,13 @@ function logout() {
 }
 
 
-/* ================= TÌM KIẾM ================= */
+/* TÌM KIẾM */
 
 function search(event) {
 
     if (event.key !== "Enter") {
         return;
     }
-
 
     let keyword =
         document
@@ -988,12 +779,10 @@ function search(event) {
         .trim()
         .toLowerCase();
 
-
     let result =
         document.getElementById(
             "searchResult"
         );
-
 
     let resultText =
         document.getElementById(
@@ -1005,14 +794,22 @@ function search(event) {
 
         result.style.display = "none";
 
+        document.getElementById(
+            "welcomeArea"
+        ).style.display = "block";
+
         return;
     }
 
 
-    /*
-       Nếu nhập HELLO / hello / Hello
-       đều cho ra 1 + 1 = 2
-    */
+    /* XÓA LỜI CHÀO */
+
+    document.getElementById(
+        "welcomeArea"
+    ).style.display = "none";
+
+
+    /* KẾT QUẢ HELLO */
 
     if (keyword === "hello") {
 
@@ -1031,15 +828,16 @@ function search(event) {
 }
 
 
-/* ================= COPY ================= */
+/* COPY */
 
 function copyResult() {
 
     let text =
         document
-        .getElementById("resultText")
+        .getElementById(
+            "resultText"
+        )
         .textContent;
-
 
     navigator.clipboard
         .writeText(text)
@@ -1056,13 +854,12 @@ function copyResult() {
 }
 
 
-/* ================= KHI MỞ WEB ================= */
+/* KHI MỞ WEB */
 
 window.onload = function() {
 
     let name =
         localStorage.getItem("username");
-
 
     let className =
         localStorage.getItem("userClass");
@@ -1072,11 +869,9 @@ window.onload = function() {
 
         hideAll();
 
-
         document.getElementById(
             "nameScreen"
         ).style.display = "flex";
-
 
         return;
     }
@@ -1086,11 +881,9 @@ window.onload = function() {
 
         hideAll();
 
-
         document.getElementById(
             "classScreen"
         ).style.display = "flex";
-
 
         return;
     }

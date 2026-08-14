@@ -17,7 +17,6 @@ body {
     color: #222;
 }
 
-/* THANH BÊN TRÁI */
 .sidebar {
     position: fixed;
     left: 0;
@@ -56,10 +55,10 @@ body {
     background: #e5e5e5;
 }
 
-/* NỘI DUNG */
 .content {
     margin-left: 220px;
     padding: 45px;
+    min-height: 100vh;
     transition: .3s;
 }
 
@@ -67,7 +66,6 @@ body {
     margin-left: 0;
 }
 
-/* NÚT MENU */
 .toggle {
     position: fixed;
     left: 230px;
@@ -84,14 +82,12 @@ body {
     left: 10px;
 }
 
-/* SIDEBAR ĐÓNG */
 .sidebar.closed {
     width: 0;
     padding: 0;
     overflow: hidden;
 }
 
-/* Ô NHẬP TÊN */
 .name-box {
     display: flex;
     gap: 10px;
@@ -117,7 +113,6 @@ body {
     font-size: 16px;
 }
 
-/* CHỌN LỚP */
 .class-box {
     display: flex;
     gap: 15px;
@@ -137,14 +132,12 @@ body {
     background: #eee;
 }
 
-/* MŨI TÊN */
 .arrow {
     font-size: 35px;
     cursor: pointer;
     margin-top: 20px;
 }
 
-/* TÌM KIẾM */
 .search-box {
     width: 100%;
     max-width: 650px;
@@ -160,7 +153,6 @@ body {
     outline: none;
 }
 
-/* KẾT QUẢ */
 .result {
     max-width: 650px;
     margin: auto;
@@ -192,7 +184,6 @@ body {
     font-size: 22px;
 }
 
-/* CÀI ĐẶT */
 .setting-box {
     max-width: 600px;
 }
@@ -218,7 +209,7 @@ body {
 
 <body>
 
-<!-- SIDEBAR -->
+<!-- THANH BÊN TRÁI -->
 <div class="sidebar" id="sidebar">
 
     <div class="logo">
@@ -226,50 +217,91 @@ body {
     </div>
 
     <div class="menu">
-        <a onclick="showHome()">🏠 Trang chủ</a>
-        <a>💬 Đoạn chat</a>
-        <a>💻 Code</a>
-        <a onclick="showSettings()">⚙️ Cài đặt</a>
-    </div>
 
+        <a onclick="showHome()">
+            🏠 Trang chủ
+        </a>
+
+        <a>
+            💬 Đoạn chat
+        </a>
+
+        <a>
+            💻 Code
+        </a>
+
+        <a onclick="showSettings()">
+            ⚙️ Cài đặt
+        </a>
+
+    </div>
 </div>
 
+
 <!-- NÚT MENU -->
-<button class="toggle" id="toggle" onclick="toggleSidebar()">☰</button>
+<button
+    class="toggle"
+    id="toggle"
+    onclick="toggleSidebar()">
+    ☰
+</button>
 
 
-<!-- MÀN HÌNH NHẬP TÊN -->
+<!-- NHẬP TÊN -->
 <main class="content" id="nameScreen">
 
-    <h1>Nhập tên của bạn</h1>
+    <h1>
+        Nhập tên của bạn
+    </h1>
 
     <div class="name-box">
+
         <input
             type="text"
             id="nameInput"
-            placeholder="Nhập tên của bạn"
-        >
+            placeholder="Nhập tên của bạn">
 
-        <button onclick="saveName()">OK</button>
+        <button onclick="saveName()">
+            OK
+        </button>
+
     </div>
 
 </main>
 
 
-<!-- MÀN HÌNH CHỌN LỚP -->
-<main class="content hidden" id="classScreen">
+<!-- CHỌN LỚP -->
+<main
+    class="content hidden"
+    id="classScreen">
 
     <h1 id="helloName"></h1>
 
-    <h2>Bro ở lớp mấy?</h2>
+    <h2>
+        Bro ở lớp mấy?
+    </h2>
 
-    <div class="arrow" onclick="showClasses()">⌄</div>
+    <div
+        class="arrow"
+        onclick="showClasses()">
+        ⌄
+    </div>
 
-    <div class="class-box hidden" id="classList">
+    <div
+        class="class-box hidden"
+        id="classList">
 
-        <button onclick="saveClass('5.1')">5.1</button>
-        <button onclick="saveClass('5.2')">5.2</button>
-        <button onclick="saveClass('5.3')">5.3</button>
+        <button onclick="saveClass('5.1')">
+            5.1
+        </button>
+
+        <button onclick="saveClass('5.2')">
+            5.2
+        </button>
+
+        <button onclick="saveClass('5.3')">
+            5.3
+        </button>
 
     </div>
 
@@ -277,17 +309,21 @@ body {
 
 
 <!-- TRANG CHỦ -->
-<main class="content hidden" id="homeScreen">
+<main
+    class="content hidden"
+    id="homeScreen">
 
-    <!-- Ô TÌM KIẾM -->
+    <!-- TÌM KIẾM -->
     <div class="search-box">
+
         <input
             type="text"
             id="searchInput"
             placeholder="Tìm kiếm"
-            onkeydown="searchKey(event)"
-        >
+            onkeydown="searchKey(event)">
+
     </div>
+
 
     <!-- LỜI CHÀO -->
     <div id="welcomeArea">
@@ -296,23 +332,32 @@ body {
 
         <p id="classText"></p>
 
-        <p>Chào mừng bạn đến với hệ thống 😎</p>
+        <p>
+            Chào mừng bạn đến với hệ thống 😎
+        </p>
 
     </div>
 
+
     <!-- KẾT QUẢ -->
-    <div id="searchResult" class="result hidden">
+    <div
+        id="searchResult"
+        class="result hidden">
 
         <div class="result-title">
             realkid script
         </div>
 
-        <button class="copy-btn" onclick="copyAnswer()">
+        <button
+            class="copy-btn"
+            onclick="copyAnswer()">
             📋 Copy
         </button>
 
-        <div class="answer" id="answer">
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/realkidhub/realkid/refs/heads/main/main.lua"))()
+        <div
+            class="answer"
+            id="answer">
+            1 + 1 = 2
         </div>
 
     </div>
@@ -321,42 +366,61 @@ body {
 
 
 <!-- CÀI ĐẶT -->
-<main class="content hidden" id="settingsScreen">
+<main
+    class="content hidden"
+    id="settingsScreen">
 
-    <h1>Cài đặt</h1>
+    <h1>
+        Cài đặt
+    </h1>
 
     <div class="setting-box">
 
-        <h3>Đổi tên</h3>
+        <h3>
+            Đổi tên
+        </h3>
 
         <div class="name-box">
 
             <input
                 type="text"
                 id="newNameInput"
-                placeholder="Tên mới"
-            >
+                placeholder="Tên mới">
 
-            <button onclick="changeName()">OK</button>
+            <button onclick="changeName()">
+                OK
+            </button>
 
         </div>
 
-        <br>
 
-        <h3>Đổi lớp</h3>
+        <h3>
+            Đổi lớp
+        </h3>
 
         <div class="class-box">
 
-            <button onclick="changeClass('5.1')">5.1</button>
-            <button onclick="changeClass('5.2')">5.2</button>
-            <button onclick="changeClass('5.3')">5.3</button>
+            <button onclick="changeClass('5.1')">
+                5.1
+            </button>
+
+            <button onclick="changeClass('5.2')">
+                5.2
+            </button>
+
+            <button onclick="changeClass('5.3')">
+                5.3
+            </button>
 
         </div>
 
+
         <br>
 
-        <button class="logout" onclick="logout()">
-            Đăng xuất
+        <button
+            class="logout"
+            onclick="logout()">
+            🚪 Đăng xuất
         </button>
 
     </div>
@@ -366,42 +430,48 @@ body {
 
 <script>
 
-/* =========================
-   MENU
-========================= */
+/* MENU */
 
 function toggleSidebar() {
 
     document
         .getElementById("sidebar")
-        .classList.toggle("closed");
+        .classList
+        .toggle("closed");
 
     document
         .getElementById("toggle")
-        .classList.toggle("closed");
+        .classList
+        .toggle("closed");
 
     document
         .querySelectorAll(".content")
-        .forEach(x => x.classList.toggle("full"));
+        .forEach(x =>
+            x.classList.toggle("full")
+        );
 }
 
 
-/* =========================
-   HIỂN THỊ MÀN HÌNH
-========================= */
+/* ẨN TẤT CẢ */
 
 function hideAll() {
 
     document
         .querySelectorAll(".content")
-        .forEach(x => x.classList.add("hidden"));
+        .forEach(x =>
+            x.classList.add("hidden")
+        );
 }
 
+
+/* TRANG CHỦ */
 
 function showHome() {
 
     if (!localStorage.getItem("name")) {
+
         showName();
+
         return;
     }
 
@@ -409,11 +479,14 @@ function showHome() {
 
     document
         .getElementById("homeScreen")
-        .classList.remove("hidden");
+        .classList
+        .remove("hidden");
 
     updateHome();
 }
 
+
+/* CÀI ĐẶT */
 
 function showSettings() {
 
@@ -421,12 +494,17 @@ function showSettings() {
 
     document
         .getElementById("settingsScreen")
-        .classList.remove("hidden");
+        .classList
+        .remove("hidden");
 
-    document.getElementById("newNameInput").value =
+    document
+        .getElementById("newNameInput")
+        .value =
         localStorage.getItem("name") || "";
 }
 
+
+/* NHẬP TÊN */
 
 function showName() {
 
@@ -434,13 +512,10 @@ function showName() {
 
     document
         .getElementById("nameScreen")
-        .classList.remove("hidden");
+        .classList
+        .remove("hidden");
 }
 
-
-/* =========================
-   NHẬP TÊN
-========================= */
 
 function saveName() {
 
@@ -451,64 +526,78 @@ function saveName() {
         .trim();
 
     if (name === "") {
+
         alert("Hãy nhập tên!");
+
         return;
     }
 
-    localStorage.setItem("name", name);
+    localStorage.setItem(
+        "name",
+        name
+    );
 
     hideAll();
 
     document
         .getElementById("classScreen")
-        .classList.remove("hidden");
+        .classList
+        .remove("hidden");
 
-    document.getElementById("helloName").innerText =
+    document
+        .getElementById("helloName")
+        .innerText =
         "Xin chào, " + name + "! 😎";
 }
 
 
-/* =========================
-   CHỌN LỚP
-========================= */
+/* CHỌN LỚP */
 
 function showClasses() {
 
     document
         .getElementById("classList")
-        .classList.remove("hidden");
+        .classList
+        .remove("hidden");
 }
 
 
 function saveClass(className) {
 
-    localStorage.setItem("class", className);
+    localStorage.setItem(
+        "class",
+        className
+    );
 
     showHome();
 }
 
 
-/* =========================
-   TRANG CHỦ
-========================= */
+/* CẬP NHẬT TRANG CHỦ */
 
 function updateHome() {
 
-    let name = localStorage.getItem("name");
-    let className = localStorage.getItem("class");
+    let name =
+        localStorage.getItem("name");
 
-    document.getElementById("welcome").innerText =
+    let className =
+        localStorage.getItem("class");
+
+    document
+        .getElementById("welcome")
+        .innerText =
         "Xin chào, " + name + "! 😎";
 
-    document.getElementById("classText").innerText =
-        "Lớp: " + (className || "Chưa chọn");
+    document
+        .getElementById("classText")
+        .innerText =
+        "Lớp: " +
+        (className || "Chưa chọn");
 
 }
 
 
-/* =========================
-   ĐỔI TÊN
-========================= */
+/* ĐỔI TÊN */
 
 function changeName() {
 
@@ -519,11 +608,16 @@ function changeName() {
         .trim();
 
     if (newName === "") {
+
         alert("Hãy nhập tên mới!");
+
         return;
     }
 
-    localStorage.setItem("name", newName);
+    localStorage.setItem(
+        "name",
+        newName
+    );
 
     alert("Đã đổi tên!");
 
@@ -531,43 +625,47 @@ function changeName() {
 }
 
 
-/* =========================
-   ĐỔI LỚP
-========================= */
+/* ĐỔI LỚP */
 
 function changeClass(className) {
 
-    localStorage.setItem("class", className);
+    localStorage.setItem(
+        "class",
+        className
+    );
 
-    alert("Đã đổi lớp thành " + className);
+    alert(
+        "Đã đổi lớp thành " +
+        className
+    );
 
     showHome();
 }
 
 
-/* =========================
-   ĐĂNG XUẤT
-========================= */
+/* ĐĂNG XUẤT */
 
 function logout() {
 
     localStorage.removeItem("name");
     localStorage.removeItem("class");
 
-    document.getElementById("nameInput").value = "";
+    document
+        .getElementById("nameInput")
+        .value = "";
 
     showName();
 }
 
 
-/* =========================
-   TÌM KIẾM
-========================= */
+/* TÌM KIẾM */
 
 function searchKey(event) {
 
     if (event.key === "Enter") {
+
         search();
+
     }
 }
 
@@ -585,44 +683,44 @@ function search() {
         return;
     }
 
-    /*
-       ẨN PHẦN:
-       Xin chào...
-       Lớp...
-       Chào mừng...
-    */
+
+    /* ẨN LỜI CHÀO */
 
     document
         .getElementById("welcomeArea")
-        .classList.add("hidden");
+        .classList
+        .add("hidden");
 
 
     /* HIỆN KẾT QUẢ */
 
     document
         .getElementById("searchResult")
-        .classList.remove("hidden");
+        .classList
+        .remove("hidden");
 
 
-    /* Nếu tìm hello */
+    /* TỪ KHÓA HACK */
 
-    if (text === "hello") {
+    if (text === "hack") {
 
-        document.getElementById("answer").innerText =
-            "loadstring(game:HttpGet("https://raw.githubusercontent.com/realkidhub/realkid/refs/heads/main/main.lua"))()";
+        document
+            .getElementById("answer")
+            .innerText =
+            "1 + 1 = 2";
 
     } else {
 
-        document.getElementById("answer").innerText =
-            "đéo có";
+        document
+            .getElementById("answer")
+            .innerText =
+            "Không tìm thấy bài tập.";
 
     }
 }
 
 
-/* =========================
-   COPY
-========================= */
+/* COPY */
 
 function copyAnswer() {
 
@@ -631,37 +729,54 @@ function copyAnswer() {
         .getElementById("answer")
         .innerText;
 
-    navigator.clipboard.writeText(text);
+    navigator
+        .clipboard
+        .writeText(text)
+        .then(function() {
 
-    alert("Đã copy!");
+            alert("Đã copy!");
+
+        });
+
 }
 
 
-/* =========================
-   TỰ ĐỘNG KHÔI PHỤC
-========================= */
+/* KHI MỞ WEB */
 
 window.onload = function() {
 
-    let name = localStorage.getItem("name");
-    let className = localStorage.getItem("class");
+    let name =
+        localStorage.getItem("name");
+
+    let className =
+        localStorage.getItem("class");
+
 
     if (!name) {
 
         showName();
 
-    } else if (!className) {
+    }
+
+    else if (!className) {
 
         hideAll();
 
         document
             .getElementById("classScreen")
-            .classList.remove("hidden");
+            .classList
+            .remove("hidden");
 
-        document.getElementById("helloName").innerText =
-            "Xin chào, " + name + "! 😎";
+        document
+            .getElementById("helloName")
+            .innerText =
+            "Xin chào, " +
+            name +
+            "! 😎";
 
-    } else {
+    }
+
+    else {
 
         showHome();
 

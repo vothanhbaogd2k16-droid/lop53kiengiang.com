@@ -17,6 +17,7 @@ body {
     color: #222;
 }
 
+/* SIDEBAR */
 .sidebar {
     position: fixed;
     left: 0;
@@ -70,6 +71,7 @@ body {
     display: none !important;
 }
 
+/* NÚT MENU */
 .toggle {
     position: fixed;
     left: 230px;
@@ -92,6 +94,7 @@ body {
     overflow: hidden;
 }
 
+/* NHẬP TÊN */
 .name-box {
     display: flex;
     gap: 10px;
@@ -117,6 +120,7 @@ body {
     font-size: 16px;
 }
 
+/* CHỌN LỚP */
 .class-box {
     display: flex;
     gap: 15px;
@@ -142,6 +146,7 @@ body {
     margin-top: 20px;
 }
 
+/* TÌM KIẾM */
 .search-box {
     width: 100%;
     max-width: 650px;
@@ -157,6 +162,7 @@ body {
     outline: none;
 }
 
+/* KẾT QUẢ */
 .result {
     max-width: 650px;
     margin: auto;
@@ -190,6 +196,7 @@ body {
     word-break: break-word;
 }
 
+/* CÀI ĐẶT */
 .setting-box {
     max-width: 600px;
 }
@@ -250,9 +257,13 @@ body {
 
 
 <!-- NHẬP TÊN -->
-<main class="content" id="nameScreen">
+<main
+    class="content"
+    id="nameScreen">
 
-    <h1>Nhập tên của bạn</h1>
+    <h1>
+        Nhập tên của bạn
+    </h1>
 
     <div class="name-box">
 
@@ -271,11 +282,15 @@ body {
 
 
 <!-- CHỌN LỚP -->
-<main class="content hidden" id="classScreen">
+<main
+    class="content hidden"
+    id="classScreen">
 
     <h1 id="helloName"></h1>
 
-    <h2>Bro ở lớp mấy?</h2>
+    <h2>
+        Bro ở lớp mấy?
+    </h2>
 
     <div
         class="arrow"
@@ -305,7 +320,9 @@ body {
 
 
 <!-- TRANG CHỦ -->
-<main class="content hidden" id="homeScreen">
+<main
+    class="content hidden"
+    id="homeScreen">
 
     <div class="search-box">
 
@@ -364,11 +381,15 @@ body {
     class="content hidden"
     id="settingsScreen">
 
-    <h1>Cài đặt</h1>
+    <h1>
+        Cài đặt
+    </h1>
 
     <div class="setting-box">
 
-        <h3>Đổi tên</h3>
+        <h3>
+            Đổi tên
+        </h3>
 
         <div class="name-box">
 
@@ -384,7 +405,9 @@ body {
         </div>
 
 
-        <h3>Đổi lớp</h3>
+        <h3>
+            Đổi lớp
+        </h3>
 
         <div class="class-box">
 
@@ -664,6 +687,7 @@ function search() {
         return;
     }
 
+
     document
         .getElementById("welcomeArea")
         .classList
@@ -675,9 +699,13 @@ function search() {
         .remove("hidden");
 
 
-    /* TÌM THẤY */
+    /* NẾU TÌM ĐƯỢC HACK */
 
     if (text === "hack") {
+
+        document
+            .getElementById("resultTitle")
+            .style.display = "block";
 
         document
             .getElementById("resultTitle")
@@ -696,13 +724,13 @@ function search() {
     }
 
 
-    /* KHÔNG TÌM THẤY */
+    /* NẾU KHÔNG TÌM ĐƯỢC */
 
     else {
 
         document
             .getElementById("resultTitle")
-            .innerText = "";
+            .style.display = "none";
 
         document
             .getElementById("answer")

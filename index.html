@@ -276,6 +276,10 @@ body {
         ⚙️ Cài đặt
     </a>
 
+    <a onclick="showVietack()">
+        🧩 Vietack
+    </a>
+
 </div>
 
 </div>
@@ -410,6 +414,14 @@ body {
 </main>
 
 <!-- CÀI ĐẶT -->
+
+<!-- VIETACK -->
+<main class="content hidden" id="vietackScreen">
+
+    <h1>Vietack</h1>
+    <p>Chào mừng bạn đến với Vietack 😎</p>
+
+</main>
 
 <main class="content hidden" id="settingsScreen">
 
@@ -646,6 +658,18 @@ function searchFromList(text) {
         .value = text;
 
     search();
+}
+
+
+/* VIETACK */
+
+function showVietack() {
+    hideAll();
+
+    document
+        .getElementById("vietackScreen")
+        .classList
+        .remove("hidden");
 }
 
 

@@ -1097,12 +1097,6 @@ window.onload = function() {
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
 import {
-    getAuth,
-    signInAnonymously,
-    onAuthStateChanged,
-    signOut
-} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
-import {
     getDatabase,
     ref,
     push,
@@ -1113,10 +1107,6 @@ import {
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-database.js";
 
-/*
-    DÁN firebaseConfig CỦA BẠN VÀO ĐÂY.
-    Lấy trong Firebase Console > Project settings > Your apps > Web app.
-*/
 const firebaseConfig = {
     apiKey: "AIzaSyDCMpzi0MR1DiSqF4VMq3EGaYTgx50xNvU",
     authDomain: "lop53kiengiang.firebaseapp.com",
@@ -1129,15 +1119,16 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
 const db = getDatabase(app);
 
-let currentUser = null;
+const myId = localStorage.getItem("chatGuestId") ||
+    ("guest_" + Date.now() + "_" + Math.random().toString(36).slice(2));
+localStorage.setItem("chatGuestId", myId);
+
 let onlineRef = null;
-let messagesRef = null;
 
 function getSavedName() {
-    return localStorage.getItem("name") || localStorage.getItem("userName") || "Khách";
+    return localStorage.getItem("name") || "Khách";
 }
 
 function escapeText(value) {
@@ -1154,14 +1145,14 @@ function showChatStatus(text) {
     if (el) el.textContent = text;
 }
 
-function renderMessages(data) {
+function renderMessages(snapshot) {
     const box = document.getElementById("messages");
     if (!box) return;
 
     box.innerHTML = "";
-
     const items = [];
-    data.forEach(child => {
+
+    snapshot.forEach(child => {
         items.push({ key: child.key, ...child.val() });
     });
 
@@ -1169,28 +1160,26 @@ function renderMessages(data) {
 
     for (const msg of items) {
         const div = document.createElement("div");
-        div.className = "message" + (currentUser && msg.uid === currentUser.uid ? " message-me" : "");
+        div.className = "message" + (msg.uid === myId ? " message-me" : "");
 
-        const safeName = escapeText(msg.name || "Khách");
-        const safeText = escapeText(msg.text || "");
-        const time = msg.time ? new Date(msg.time).toLocaleTimeString("vi-VN", {
-            hour: "2-digit",
-            minute: "2-digit"
-        }) : "";
+        const time = msg.time
+            ? new Date(msg.time).toLocaleTimeString("vi-VN", {
+                hour: "2-digit",
+                minute: "2-digit"
+              })
+            : "";
 
         div.innerHTML = `
-            <div class="message-name">${safeName}</div>
-            <div class="message-text">${safeText}</div>
+            <div class="message-name">${escapeText(msg.name || "Khách")}</div>
+            <div class="message-text">${escapeText(msg.text || "")}</div>
             <div class="message-time">${time}</div>
         `;
 
-        if (currentUser && msg.uid === currentUser.uid) {
+        if (msg.uid === myId) {
             const del = document.createElement("button");
             del.className = "delete-message";
             del.textContent = "Xóa";
-            del.onclick = () => {
-                remove(ref(db, "messages/" + msg.key));
-            };
+            del.onclick = () => remove(ref(db, "messages/" + msg.key));
             div.appendChild(del);
         }
 
@@ -1201,28 +1190,24 @@ function renderMessages(data) {
 }
 
 function watchMessages() {
-    messagesRef = ref(db, "messages");
-    onValue(messagesRef, snapshot => {
-        renderMessages(snapshot);
+    onValue(ref(db, "messages"), renderMessages, error => {
+        console.error(error);
+        showChatStatus("Không đọc được tin nhắn: " + error.message);
     });
 }
 
 function watchOnlineUsers() {
-    const usersRef = ref(db, "onlineUsers");
-
-    onValue(usersRef, snapshot => {
+    onValue(ref(db, "onlineUsers"), snapshot => {
         const box = document.getElementById("onlineUsers");
         const count = document.getElementById("onlineCount");
-
         if (!box || !count) return;
 
         box.innerHTML = "";
-
         let total = 0;
+
         snapshot.forEach(child => {
             total++;
             const user = child.val();
-
             const item = document.createElement("div");
             item.className = "online-user";
             item.textContent = "🟢 " + (user.name || "Khách");
@@ -1231,38 +1216,41 @@ function watchOnlineUsers() {
 
         count.textContent = total;
 
-        if (total === 0) {
-            box.innerHTML = "<p>Chưa có ai online.</p>";
-        }
+        if (!total) box.innerHTML = "<p>Chưa có ai online.</p>";
+    }, error => {
+        console.error(error);
     });
 }
 
-async function setupPresence(user) {
-    currentUser = user;
-    onlineRef = ref(db, "onlineUsers/" + user.uid);
+async function setupChat() {
+    try {
+        onlineRef = ref(db, "onlineUsers/" + myId);
 
-    await set(onlineRef, {
-        name: getSavedName(),
-        uid: user.uid,
-        online: true,
-        lastSeen: serverTimestamp()
-    });
+        await set(onlineRef, {
+            name: getSavedName(),
+            online: true,
+            lastSeen: serverTimestamp()
+        });
 
-    onDisconnect(onlineRef).remove();
+        onDisconnect(onlineRef).remove();
 
-    watchMessages();
-    watchOnlineUsers();
+        watchMessages();
+        watchOnlineUsers();
 
-    showChatStatus("Đã kết nối");
+        showChatStatus("🟢 Đã kết nối — có thể nhắn tin");
+    } catch (error) {
+        console.error(error);
+        showChatStatus("❌ Firebase lỗi: " + error.message);
+    }
 }
 
 async function sendMessage(text) {
-    if (!currentUser || !text.trim()) return;
+    if (!text.trim()) return;
 
     const messageRef = push(ref(db, "messages"));
 
     await set(messageRef, {
-        uid: currentUser.uid,
+        uid: myId,
         name: getSavedName(),
         text: text.trim(),
         time: serverTimestamp()
@@ -1273,45 +1261,25 @@ document.getElementById("chatForm")?.addEventListener("submit", async event => {
     event.preventDefault();
 
     const input = document.getElementById("messageInput");
-    const text = input.value;
+    const text = input.value.trim();
 
-    if (!text.trim()) return;
-
-    input.value = "";
+    if (!text) return;
 
     try {
+        input.disabled = true;
         await sendMessage(text);
+        input.value = "";
+        showChatStatus("🟢 Đã gửi");
     } catch (error) {
         console.error(error);
-        showChatStatus("Không gửi được tin nhắn");
+        showChatStatus("❌ Không gửi được: " + error.message);
+    } finally {
+        input.disabled = false;
+        input.focus();
     }
 });
 
-onAuthStateChanged(auth, user => {
-    if (user) {
-        setupPresence(user).catch(error => {
-            console.error(error);
-            showChatStatus("Lỗi kết nối Firebase");
-        });
-    }
-});
-
-signInAnonymously(auth).catch(error => {
-    console.error(error);
-    showChatStatus("Chưa cấu hình Firebase");
-});
-
-/* Cho phần Cài đặt/Đăng xuất dùng được với Firebase */
-window.logoutFirebase = async function () {
-    try {
-        if (onlineRef) {
-            await remove(onlineRef);
-        }
-        await signOut(auth);
-    } catch (error) {
-        console.error(error);
-    }
-};
+setupChat();
 </script>
 
 </body>

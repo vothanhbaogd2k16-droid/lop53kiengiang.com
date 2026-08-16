@@ -228,16 +228,6 @@ body {
 }
 
 
-/* CHAT ONLINE */
-
-function showChat() {
-    hideAll();
-
-    document
-        .getElementById("chatScreen")
-        .classList
-        .remove("hidden");
-}
 
 /* CÀI ĐẶT */
 .setting-box {
@@ -602,7 +592,7 @@ function showChat() {
 </main>
 
 <!-- CHAT ONLINE -->
-<main class="content hidden" id="chatScreen" style="display:none;">
+<main class="content hidden" id="chatScreen">
 
     <div class="chat-page">
         <div class="chat-head">
@@ -880,6 +870,18 @@ function searchFromList(text) {
 }
 
 
+/* CHAT ONLINE */
+
+function showChat() {
+    hideAll();
+
+    const chat = document.getElementById("chatScreen");
+    if (chat) {
+        chat.classList.remove("hidden");
+        chat.style.display = "block";
+    }
+}
+
 /* VIETACK */
 
 function showVietack() {
@@ -1116,13 +1118,14 @@ import {
     Lấy trong Firebase Console > Project settings > Your apps > Web app.
 */
 const firebaseConfig = {
-    apiKey: "DAN_API_KEY_CUA_BAN",
-    authDomain: "TEN_PROJECT.firebaseapp.com",
-    databaseURL: "https://TEN_PROJECT-default-rtdb.firebaseio.com",
-    projectId: "TEN_PROJECT",
-    storageBucket: "TEN_PROJECT.firebasestorage.app",
-    messagingSenderId: "DAN_MESSAGING_SENDER_ID",
-    appId: "DAN_APP_ID"
+    apiKey: "AIzaSyDCMpzi0MR1DiSqF4VMq3EGaYTgx50xNvU",
+    authDomain: "lop53kiengiang.firebaseapp.com",
+    databaseURL: "https://lop53kiengiang-default-rtdb.firebaseio.com",
+    projectId: "lop53kiengiang",
+    storageBucket: "lop53kiengiang.firebasestorage.app",
+    messagingSenderId: "120854229178",
+    appId: "1:120854229178:web:f421e6fdc9e036f80cd283",
+    measurementId: "G-FRL21GWVMH"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -1134,7 +1137,7 @@ let onlineRef = null;
 let messagesRef = null;
 
 function getSavedName() {
-    return localStorage.getItem("userName") || "Khách";
+    return localStorage.getItem("name") || localStorage.getItem("userName") || "Khách";
 }
 
 function escapeText(value) {

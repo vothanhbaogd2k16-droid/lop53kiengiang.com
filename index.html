@@ -586,10 +586,6 @@ function showChat() {
 
 <!-- VIETACK -->
 <main class="content hidden" id="vietackScreen">
-    <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px;flex-wrap:wrap;">
-        <h1 style="margin:0;">🧩 Vietjack</h1>
-        <a href="https://vietjack.com/" target="_blank" rel="noopener noreferrer" style="padding:10px 15px;border-radius:10px;background:#222;color:#fff;text-decoration:none;">Mở Vietjack</a>
-    </div>
 
     <iframe
         src="https://vietjack.com/"
@@ -606,13 +602,13 @@ function showChat() {
 </main>
 
 <!-- CHAT ONLINE -->
-<main class="content hidden" id="chatScreen">
+<main class="content hidden" id="chatScreen" style="display:none;">
 
     <div class="chat-page">
         <div class="chat-head">
             <div>
                 <h1>💬 Trò chuyện online</h1>
-                <p id="chatStatus">Đang kết nối...</p>
+                <p id="chatStatus">Đang kết nối Firebase...</p>
             </div>
             <div class="online-box">
                 🟢 <span id="onlineCount">0</span> đang online
@@ -1120,14 +1116,13 @@ import {
     Lấy trong Firebase Console > Project settings > Your apps > Web app.
 */
 const firebaseConfig = {
-    apiKey: "AIzaSyDCMpzi0MR1DiSqF4VMq3EGaYTgx50xNvU",
-    authDomain: "lop53kiengiang.firebaseapp.com",
-    databaseURL: "https://lop53kiengiang-default-rtdb.firebaseio.com",
-    projectId: "lop53kiengiang",
-    storageBucket: "lop53kiengiang.firebasestorage.app",
-    messagingSenderId: "120854229178",
-    appId: "1:120854229178:web:f421e6fdc9e036f80cd283",
-    measurementId: "G-FRL21GWVMH"
+    apiKey: "DAN_API_KEY_CUA_BAN",
+    authDomain: "TEN_PROJECT.firebaseapp.com",
+    databaseURL: "https://TEN_PROJECT-default-rtdb.firebaseio.com",
+    projectId: "TEN_PROJECT",
+    storageBucket: "TEN_PROJECT.firebasestorage.app",
+    messagingSenderId: "DAN_MESSAGING_SENDER_ID",
+    appId: "DAN_APP_ID"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -1139,7 +1134,7 @@ let onlineRef = null;
 let messagesRef = null;
 
 function getSavedName() {
-    return localStorage.getItem("name") || "Khách";
+    return localStorage.getItem("userName") || "Khách";
 }
 
 function escapeText(value) {
